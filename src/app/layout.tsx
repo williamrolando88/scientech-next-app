@@ -4,7 +4,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import StarIcon from "@mui/icons-material/Star";
 import SupportIcon from "@mui/icons-material/Support";
-import * as React from "react";
+import { ReactNode } from "react";
 import { DashboardLayout } from "../components/DashboardLayout";
 
 export const metadata = {
@@ -26,11 +26,7 @@ export const PLACEHOLDER_LINKS = [
   { text: "Logout", icon: LogoutIcon },
 ];
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
