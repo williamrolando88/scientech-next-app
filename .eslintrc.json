@@ -1,3 +1,4 @@
+// todo: add eslint prettier
 {
   "root": true,
   "extends": [
@@ -5,7 +6,7 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["testing-library"],
+  "plugins": ["testing-library", "jest"],
   "overrides": [
     // Only uses Testing Library lint rules in test files
     {
@@ -13,7 +14,10 @@
         "**/__tests__/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test).[jt]s?(x)"
       ],
-      "extends": ["plugin:testing-library/react"]
+      "extends": ["plugin:testing-library/react"],
+      "env": {
+        "jest": true // now **/*.test.js files' env has both es6 *and* jest
+      }
     },
     {
       "files": ["*.ts", "*.tsx", "*.js"],
