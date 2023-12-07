@@ -1,38 +1,17 @@
-// todo: add eslint prettier
 {
   "root": true,
+  "env": {
+    "jest/globals": true
+  },
   "extends": [
-    "next",
-    "plugin:@typescript-eslint/eslint-recommended",
+    "next/core-web-vitals",
+    "prettier",
     "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["testing-library", "jest"],
-  "overrides": [
-    // Only uses Testing Library lint rules in test files
-    {
-      "files": [
-        "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
-      ],
-      "extends": ["plugin:testing-library/react"],
-      "env": {
-        "jest": true // now **/*.test.js files' env has both es6 *and* jest
-      }
-    },
-    {
-      "files": ["*.ts", "*.tsx", "*.js"],
-      "parser": "@typescript-eslint/parser"
-    }
-  ],
+
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": [
-      2,
-      {
-        "argsIgnorePattern": "^_",
-        "args": "after-used",
-        "varsIgnorePattern": "^_"
-      }
-    ],
-    "no-console": [2, { "allow": ["warn", "error"] }]
+    "no-console": ["error", { "allow": ["warn", "error"] }]
   }
 }

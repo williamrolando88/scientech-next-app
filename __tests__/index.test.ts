@@ -1,5 +1,5 @@
 describe("test", () => {
   test("should run", () => {
-    expect([].length).toBe(0);
+    expect([]).toHaveLength(0);
   });
 });

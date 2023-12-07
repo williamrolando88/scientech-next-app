@@ -1,12 +1,18 @@
-import * as React from 'react';
-import Image from 'next/image';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Image from "next/image";
+import { FC } from "react";
 
-export default function MediaCard({ heading, text }: { heading: string; text: string }) {
+interface MediaCardProps {
+  heading: string;
+  text: string;
+  onChange: (text: string) => void;
+}
+
+const MediaCard: FC<MediaCardProps> = ({ heading, text }) => {
   return (
     <Card>
       <Image
@@ -15,9 +21,9 @@ export default function MediaCard({ heading, text }: { heading: string; text: st
         width={640}
         height={480}
         style={{
-          maxWidth: '100%',
-          height: '200px',
-          objectFit: 'cover',
+          maxWidth: "100%",
+          height: "200px",
+          objectFit: "cover",
         }}
       />
       <CardContent>
@@ -34,4 +40,6 @@ export default function MediaCard({ heading, text }: { heading: string; text: st
       </CardActions>
     </Card>
   );
-}
+};
+
+export default MediaCard;
