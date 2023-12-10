@@ -1,18 +1,13 @@
-import { IconButton, Stack, Typography } from '@mui/material';
-import { alpha } from '@mui/material/styles';
-import { AnimatePresence, m } from 'framer-motion';
-import { fData } from '../../../../helpers/formatNumber';
-import Iconify from '../../Iconify';
-import { varFade } from '../../animate';
-import FileThumbnail, { fileData } from '../../file-thumbnail';
-import { UploadProps } from '../types';
+import { fData } from "@/lib/helpers/number";
+import { IconButton, Stack, Typography } from "@mui/material";
+import { alpha } from "@mui/material/styles";
+import { AnimatePresence, m } from "framer-motion";
+import Iconify from "../../Iconify";
+import { varFade } from "../../animate";
+import FileThumbnail, { fileData } from "../../file-thumbnail";
+import { UploadProps } from "../types";
 
-export default function MultiFilePreview({
-  thumbnail,
-  files,
-  onRemove,
-  sx,
-}: UploadProps) {
+export default function MultiFilePreview({ thumbnail, files, onRemove, sx }: UploadProps) {
   if (!files?.length) {
     return null;
   }
@@ -20,9 +15,9 @@ export default function MultiFilePreview({
   return (
     <AnimatePresence initial={false}>
       {files.map((file) => {
-        const { key, name = '', size = 0 } = fileData(file);
+        const { key, name = "", size = 0 } = fileData(file);
 
-        const isNotFormatFile = typeof file === 'string';
+        const isNotFormatFile = typeof file === "string";
 
         if (thumbnail) {
           return (
@@ -30,16 +25,16 @@ export default function MultiFilePreview({
               key={key}
               component={m.div}
               {...varFade().inUp}
-              alignItems='center'
-              display='inline-flex'
-              justifyContent='center'
+              alignItems="center"
+              display="inline-flex"
+              justifyContent="center"
               sx={{
                 m: 0.5,
                 width: 80,
                 height: 80,
                 borderRadius: 1.25,
-                overflow: 'hidden',
-                position: 'relative',
+                overflow: "hidden",
+                position: "relative",
                 border: (theme) => `solid 1px ${theme.palette.divider}`,
                 ...sx,
               }}
@@ -48,27 +43,27 @@ export default function MultiFilePreview({
                 tooltip
                 imageView
                 file={file}
-                sx={{ position: 'absolute' }}
-                imgSx={{ position: 'absolute' }}
+                sx={{ position: "absolute" }}
+                imgSx={{ position: "absolute" }}
               />
 
               {onRemove && (
                 <IconButton
-                  size='small'
+                  size="small"
                   onClick={() => onRemove(file)}
                   sx={{
                     top: 4,
                     right: 4,
-                    p: '1px',
-                    position: 'absolute',
+                    p: "1px",
+                    position: "absolute",
                     color: (theme) => alpha(theme.palette.common.white, 0.72),
                     bgcolor: (theme) => alpha(theme.palette.grey[900], 0.48),
-                    '&:hover': {
+                    "&:hover": {
                       bgcolor: (theme) => alpha(theme.palette.grey[900], 0.72),
                     },
                   }}
                 >
-                  <Iconify icon='eva:close-fill' size={16} />
+                  <Iconify icon="eva:close-fill" size={16} />
                 </IconButton>
               )}
             </Stack>
@@ -81,8 +76,8 @@ export default function MultiFilePreview({
             component={m.div}
             {...varFade().inUp}
             spacing={2}
-            direction='row'
-            alignItems='center'
+            direction="row"
+            alignItems="center"
             sx={{
               my: 1,
               px: 1,
@@ -95,22 +90,18 @@ export default function MultiFilePreview({
             <FileThumbnail file={file} />
 
             <Stack flexGrow={1} sx={{ minWidth: 0 }}>
-              <Typography variant='subtitle2' noWrap>
+              <Typography variant="subtitle2" noWrap>
                 {isNotFormatFile ? file : name}
               </Typography>
 
-              <Typography variant='caption' sx={{ color: 'text.secondary' }}>
-                {isNotFormatFile ? '' : fData(size)}
+              <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                {isNotFormatFile ? "" : fData(size)}
               </Typography>
             </Stack>
 
             {onRemove && (
-              <IconButton
-                edge='end'
-                size='small'
-                onClick={() => onRemove(file)}
-              >
-                <Iconify icon='eva:close-fill' />
+              <IconButton edge="end" size="small" onClick={() => onRemove(file)}>
+                <Iconify icon="eva:close-fill" />
               </IconButton>
             )}
           </Stack>

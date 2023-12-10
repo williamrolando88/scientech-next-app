@@ -1,6 +1,6 @@
 import { ImportCalculator, ItemCalculationValues, LotSchema } from "@/types/calculator";
 import { round } from "mathjs";
-import { parseSafeNumber } from "../helpers/numbers";
+import { parseSafeNumber } from "../helpers/number";
 
 export const calculateImportation = (inputs: ImportCalculator) => {
   // todo: store these values on the server

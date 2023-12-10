@@ -1,6 +1,6 @@
-import { SxProps } from '@mui/material';
-import { Theme } from '@mui/material/styles';
-import { DropzoneOptions } from 'react-dropzone';
+import { SxProps } from "@mui/material";
+import { Theme } from "@mui/material/styles";
+import { DropzoneOptions } from "react-dropzone";
 
 export interface CustomFile extends File {
   path?: string;
