@@ -38,7 +38,7 @@ export const PLACEHOLDER_LINKS = [
 interface DashboardLayoutProps {
   children: ReactNode;
 }
-export const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
+export const DashboardLayoutOld: FC<DashboardLayoutProps> = ({ children }) => {
   return (
     <>
       <AppBar position="fixed" sx={{ zIndex: 2000 }}>
