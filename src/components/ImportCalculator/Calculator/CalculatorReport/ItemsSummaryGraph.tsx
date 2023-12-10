@@ -11,7 +11,7 @@ const ItemsSummaryGraph: FC = () => {
   return (
     <div className="w-full">
       <Chart
-        height={values.items.length * 50 + 100}
+        height={values.items.length * 40 + 120}
         type="bar"
         series={reportValues}
         options={{
@@ -35,6 +35,10 @@ const ItemsSummaryGraph: FC = () => {
                 return `$ ${val}`;
               },
             },
+          },
+          title: {
+            text: "Reporte de costos por artículo",
+            align: "center",
           },
           legend: {
             position: "top",
