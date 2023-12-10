@@ -1,6 +1,6 @@
-import { Box, Link } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
-import { BreadcrumbsLinkProps } from './types';
+import { Box, Link as MUILink } from "@mui/material";
+import Link from "next/link";
+import { BreadcrumbsLinkProps } from "./types";
 
 type Props = {
   link: BreadcrumbsLinkProps;
@@ -12,15 +12,15 @@ export default function BreadcrumbsLink({ link, activeLast, disabled }: Props) {
   const { name, href, icon } = link;
 
   const styles = {
-    typography: 'body2',
-    alignItems: 'center',
-    color: 'text.primary',
-    display: 'inline-flex',
+    typography: "body2",
+    alignItems: "center",
+    color: "text.primary",
+    display: "inline-flex",
     ...(disabled &&
       !activeLast && {
-        cursor: 'default',
-        pointerEvents: 'none',
-        color: 'text.disabled',
+        cursor: "default",
+        pointerEvents: "none",
+        color: "text.disabled",
       }),
   };
 
@@ -28,11 +28,11 @@ export default function BreadcrumbsLink({ link, activeLast, disabled }: Props) {
     <>
       {icon && (
         <Box
-          component='span'
+          component="span"
           sx={{
             mr: 1,
-            display: 'inherit',
-            '& svg': { width: 20, height: 20 },
+            display: "inherit",
+            "& svg": { width: 20, height: 20 },
           }}
         >
           {icon}
@@ -45,9 +45,9 @@ export default function BreadcrumbsLink({ link, activeLast, disabled }: Props) {
 
   if (href) {
     return (
-      <Link component={RouterLink} to={href} sx={styles}>
+      <MUILink component={Link} href={href} sx={styles}>
         {renderContent}
-      </Link>
+      </MUILink>
     );
   }
 

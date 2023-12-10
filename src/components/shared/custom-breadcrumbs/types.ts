@@ -1,7 +1,4 @@
-// @mui
-import { BreadcrumbsProps } from '@mui/material';
-
-// ----------------------------------------------------------------------
+import { BreadcrumbsProps } from "@mui/material";
 
 export type BreadcrumbsLinkProps = {
   name?: string;
