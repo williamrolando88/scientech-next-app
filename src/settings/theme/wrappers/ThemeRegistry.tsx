@@ -1,4 +1,5 @@
 "use client";
+import SnackbarProvider from "@/components/shared/snackbar/SnackbarProvider";
 import ThemeProvider from "@/settings/theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import * as React from "react";
@@ -12,7 +13,9 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
       <NextAppDirEmotionCacheProvider options={{ key: "mui" }}>
         <ThemeProvider>
           <CssBaseline />
-          <ThemeSettings>{children}</ThemeSettings>
+          <ThemeSettings>
+            <SnackbarProvider>{children}</SnackbarProvider>
+          </ThemeSettings>
         </ThemeProvider>
       </NextAppDirEmotionCacheProvider>
     </SettingsProvider>
