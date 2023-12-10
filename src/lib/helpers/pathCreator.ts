@@ -1,5 +1,9 @@
 export const pathCreator = (root: string, ...sublinks: string[]): string => {
-  if (!sublinks || !sublinks.length) return root;
+  let path = root;
 
-  return sublinks.reduce((result, sublink) => result + sublink, root);
+  if (sublinks && sublinks.length) {
+    path = sublinks.reduce((result, sublink) => result + sublink, root);
+  }
+
+  return path;
 };

@@ -1,4 +1,4 @@
-import { ImportCalculator, ItemCalculationValues, LotSchema } from "@/types/calculator";
+import { ImportCalculator, ItemCalculationValues } from "@/types/importCalculator";
 import { round } from "mathjs";
 import { parseSafeNumber } from "../helpers/number";
 
@@ -127,46 +127,33 @@ export const calculateImportation = (inputs: ImportCalculator) => {
   };
 };
 
-export const loadLotData = (schema: LotSchema[], calculatorData: ImportCalculator): LotSchema[] =>
-  schema.map((section) => ({
-    title: section.title,
-    values: section.values.map((field) => ({
-      label: field.name,
-      name: field.value,
-      // @ts-expect-error - This is a hack to avoid having to create a new type for this
-      value: calculatorData.settings[field.value],
-      startSymbol: field.startSymbol,
-      endSymbol: field.endSymbol,
-    })),
-  }));
+export const getImportReport = (articlesReport: ItemCalculationValues[]): ApexAxisChartSeries => {
+  const originCosts = articlesReport.map((article) => article.unitOriginCosts);
+  const unitImportCost = articlesReport.map((article) => article.unitImportCost);
+  const unitTaxesFee = articlesReport.map((article) => article.unitTaxesFee);
+  const unitItemProfit = articlesReport.map((article) => article.unitItemProfit);
+  const unitLocalFleetCost = articlesReport.map((article) => article.unitLocalFleetCost);
 
-// export const getImportReport = (articlesReport: ItemCalculationValues[]): ApexAxisChartSeries => {
-//   const originCosts = articlesReport.map((article) => article.unitOriginCosts);
-//   const unitImportCost = articlesReport.map((article) => article.unitImportCost);
-//   const unitTaxesFee = articlesReport.map((article) => article.unitTaxesFee);
-//   const unitItemProfit = articlesReport.map((article) => article.unitItemProfit);
-//   const unitLocalFleetCost = articlesReport.map((article) => article.unitLocalFleetCost);
-
-//   return [
-//     {
-//       name: "Costos de origen",
-//       data: originCosts,
-//     },
-//     {
-//       name: "Costos de importación",
-//       data: unitImportCost,
-//     },
-//     {
-//       name: "Impuestos",
-//       data: unitTaxesFee,
-//     },
-//     {
-//       name: "Flete local",
-//       data: unitLocalFleetCost,
-//     },
-//     {
-//       name: "Ganancia",
-//       data: unitItemProfit,
-//     },
-//   ];
-// };
+  return [
+    {
+      name: "Costos de origen",
+      data: originCosts,
+    },
+    {
+      name: "Costos de importación",
+      data: unitImportCost,
+    },
+    {
+      name: "Impuestos",
+      data: unitTaxesFee,
+    },
+    {
+      name: "Flete local",
+      data: unitLocalFleetCost,
+    },
+    {
+      name: "Ganancia",
+      data: unitItemProfit,
+    },
+  ];
+};

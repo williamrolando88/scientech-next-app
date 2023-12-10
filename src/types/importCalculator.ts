@@ -12,33 +12,6 @@ export type ImportCalculatorSettings = z.infer<typeof ImportCalculatorSettingsVa
 export type ImportCalculatorItems = z.infer<typeof ImportCalculatorItemsValidationSchema>;
 export type ImportCalculator = z.infer<typeof ImportCalculatorValidationSchema>;
 
-export type FirestoreImportCalculator = ImportCalculator & {
-  metadata: {
-    createdAt: Timestamp;
-    updatedAt: Timestamp;
-  };
-};
-
-export type ArticlesHeader = {
-  name: keyof ImportCalculatorItems;
-  type: string;
-  title: string;
-  field: "input" | "span";
-  startSymbol?: string;
-  endSymbol?: string;
-};
-
-export type LotSchema = {
-  title: string;
-  values: {
-    name: string;
-    value: string;
-    label?: string;
-    endSymbol?: string;
-    startSymbol?: string;
-  }[];
-};
-
 export interface ItemCalculationValues extends ImportCalculatorItems {
   rowWeight: number;
   EXW: number;
@@ -54,3 +27,30 @@ export interface ItemCalculationValues extends ImportCalculatorItems {
   unitLocalFleetCost: number;
   unitItemProfit: number;
 }
+
+export type StoredImportCalculator = ImportCalculator & {
+  metadata: {
+    createdAt: Timestamp;
+    updatedAt: Timestamp;
+  };
+};
+
+// export type ArticlesHeader = {
+//   name: keyof ImportCalculatorItems;
+//   type: string;
+//   title: string;
+//   field: "input" | "span";
+//   startSymbol?: string;
+//   endSymbol?: string;
+// };
+
+// export type LotSchema = {
+//   title: string;
+//   values: {
+//     name: string;
+//     value: string;
+//     label?: string;
+//     endSymbol?: string;
+//     startSymbol?: string;
+//   }[];
+// };
