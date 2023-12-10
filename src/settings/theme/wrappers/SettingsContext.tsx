@@ -1,16 +1,16 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import localStorageAvailable from '@/lib/helpers/localStorageAvailable';
+"use client";
+import localStorageAvailable from "@/lib/helpers/localStorageAvailable";
 import {
   createContext,
   useCallback,
   useContext,
   useEffect,
   useMemo,
-} from 'react';
-import { useLocalStorage } from 'usehooks-ts';
-import { defaultSettings } from './config-setting';
-import { getPresets, presetsOption } from './presets';
-import { SettingsContextProps, SettingsValueProps } from './types';
+} from "react";
+import { useLocalStorage } from "usehooks-ts";
+import { defaultSettings } from "./config-setting";
+import { getPresets, presetsOption } from "./presets";
+import { SettingsContextProps, SettingsValueProps } from "./types";
 
 export const SettingsContext = createContext<SettingsContextProps>(
   {} as SettingsContextProps
@@ -20,7 +20,7 @@ export const useSettingsContext = () => {
   const context = useContext(SettingsContext);
 
   if (!context)
-    throw new Error('useSettingsContext must be use inside SettingsProvider');
+    throw new Error("useSettingsContext must be use inside SettingsProvider");
 
   return context;
 };
@@ -31,27 +31,27 @@ type SettingsProviderProps = {
 
 export function SettingsProvider({ children }: SettingsProviderProps) {
   const [settings, setSettings] = useLocalStorage<SettingsValueProps>(
-    'settings',
+    "settings",
     defaultSettings
   );
 
   const storageAvailable = localStorageAvailable();
 
   const langStorage = storageAvailable
-    ? localStorage.getItem('i18nextLng')
-    : '';
+    ? localStorage.getItem("i18nextLng")
+    : "";
 
-  const isArabic = langStorage === 'ar';
+  const isArabic = langStorage === "ar";
 
   useEffect(() => {
     if (isArabic) {
-      onChangeDirectionByLang('ar');
+      onChangeDirectionByLang("ar");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isArabic]);
 
   const onToggleMode = useCallback(() => {
-    const themeMode = settings?.themeMode === 'light' ? 'dark' : 'light';
+    const themeMode = settings?.themeMode === "light" ? "dark" : "light";
     setSettings({ ...settings, themeMode });
   }, [setSettings, settings]);
 
@@ -66,7 +66,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
 
   // Direction
   const onToggleDirection = useCallback(() => {
-    const themeDirection = settings?.themeDirection === 'rtl' ? 'ltr' : 'rtl';
+    const themeDirection = settings?.themeDirection === "rtl" ? "ltr" : "rtl";
     setSettings({ ...settings, themeDirection });
   }, [setSettings, settings]);
 
@@ -81,7 +81,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
 
   const onChangeDirectionByLang = useCallback(
     (lang: string) => {
-      const themeDirection = lang === 'ar' ? 'rtl' : 'ltr';
+      const themeDirection = lang === "ar" ? "rtl" : "ltr";
       setSettings({ ...settings, themeDirection });
     },
     [setSettings, settings]
@@ -90,7 +90,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
   // Layout
   const onToggleLayout = useCallback(() => {
     const themeLayout =
-      settings?.themeLayout === 'vertical' ? 'mini' : 'vertical';
+      settings?.themeLayout === "vertical" ? "mini" : "vertical";
     setSettings({ ...settings, themeLayout });
   }, [setSettings, settings]);
 
@@ -106,7 +106,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
   // Contrast
   const onToggleContrast = useCallback(() => {
     const themeContrast =
-      settings?.themeContrast === 'default' ? 'bold' : 'default';
+      settings?.themeContrast === "default" ? "bold" : "default";
     setSettings({ ...settings, themeContrast });
   }, [setSettings, settings]);
 

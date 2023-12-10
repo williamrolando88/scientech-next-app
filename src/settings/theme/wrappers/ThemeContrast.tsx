@@ -1,8 +1,9 @@
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
-import merge from 'lodash/merge';
-import { useMemo } from 'react';
-import { useSettingsContext } from './SettingsContext';
+"use client";
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
+import merge from "lodash/merge";
+import { useMemo } from "react";
+import { useSettingsContext } from "./SettingsContext";
 
 type Props = {
   children: React.ReactNode;
@@ -11,8 +12,8 @@ type Props = {
 export default function ThemeContrast({ children }: Props) {
   const outerTheme = useTheme();
   const { themeContrast, themeMode } = useSettingsContext();
-  const isLight = themeMode === 'light';
-  const isContrastBold = themeContrast === 'bold';
+  const isLight = themeMode === "light";
+  const isContrastBold = themeContrast === "bold";
 
   const themeOptions = useMemo(
     () => ({

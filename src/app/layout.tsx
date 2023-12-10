@@ -1,3 +1,4 @@
+import ThemeRegistry from "@/settings/theme/wrappers/ThemeRegistry";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -30,7 +31,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <DashboardLayout>{children}</DashboardLayout>
+        <ThemeRegistry>
+          <DashboardLayout>{children}</DashboardLayout>
+        </ThemeRegistry>
       </body>
     </html>
   );

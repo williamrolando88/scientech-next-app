@@ -1,4 +1,3 @@
-import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -20,7 +19,7 @@ interface DashboardLayoutProps {
 }
 export const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
   return (
-    <ThemeRegistry>
+    <>
       <AppBar position="fixed" sx={{ zIndex: 2000 }}>
         <Toolbar sx={{ backgroundColor: "background.paper" }}>
           <DashboardIcon
@@ -91,6 +90,6 @@ export const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
       >
         {children}
       </Box>
-    </ThemeRegistry>
+    </>
   );
 };

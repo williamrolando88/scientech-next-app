@@ -9,7 +9,7 @@ import { FC } from "react";
 interface MediaCardProps {
   heading: string;
   text: string;
-  onChange: (text: string) => void;
+  onChange?: (text: string) => void;
 }
 
 const MediaCard: FC<MediaCardProps> = ({ heading, text }) => {
