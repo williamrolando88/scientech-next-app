@@ -1,12 +1,10 @@
-export const parseSafeNumber = (value?: number | string | null): number => {
-  if (!value) return 0;
-  if (typeof value === "number") {
-    if (isNaN(value)) {
-      return 0;
-    } else {
-      return value;
-    }
+export const parseSafeNumber = (value?: unknown): number => {
+  const parsedValue = parseFloat(value as string);
+
+  // Check if the parsed value is NaN or if the input is null/undefined
+  if (isNaN(parsedValue) || value === null || value === undefined) {
+    return 0;
   }
 
-  return parseFloat(value);
+  return parsedValue;
 };
