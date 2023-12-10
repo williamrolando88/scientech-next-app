@@ -124,6 +124,14 @@ const CalculatorItemsRow: FC<Props> = ({ index, onDelete }) => {
         }}
       />
 
+      <input
+        type="text"
+        value={values.items[index].unitPrice}
+        style={{ display: "none" }}
+        name={`items[${index}].unitPrice`}
+        readOnly
+      />
+
       <Button sx={{ width: "4rem" }} color="error" variant="outlined" onClick={onDelete}>
         <Iconify icon="pajamas:remove" />
       </Button>

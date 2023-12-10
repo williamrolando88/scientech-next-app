@@ -4,11 +4,11 @@ import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { Button, Stack, TextField } from "@mui/material";
 import { FC, useRef, useState } from "react";
 
-interface CalculatorEditableFieldProps {
+interface EditableTextFieldProps {
   index: number;
 }
 
-export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({ index }) => {
+export const EditableTextField: FC<EditableTextFieldProps> = ({ index }) => {
   const { values, setFieldValue, deleteNote } = useImportCalculatorContext();
   const storedValue = values.notes[index];
   const [disabled, setDisabled] = useState(true);
@@ -66,9 +66,18 @@ export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({ inde
         </a>
       )}
 
+      <input
+        type="text"
+        value={currentValue}
+        style={{ display: "none" }}
+        name={`notes[${index}]`}
+        readOnly
+      />
+
       <TextField
         fullWidth
         size="small"
+        name={`notes[${index}]`}
         inputRef={inputRef}
         key={index}
         disabled={disabled}
