@@ -21,9 +21,11 @@ export type NavListProps = {
   children?: any;
 };
 
+export type NavData = {
+  subheader: string;
+  items: NavListProps[];
+};
+
 export interface NavSectionProps extends StackProps {
-  data: {
-    subheader: string;
-    items: NavListProps[];
-  }[];
+  data: NavData[];
 }
