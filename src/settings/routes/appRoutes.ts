@@ -20,5 +20,7 @@ export const ROUTES = {
       index: pathCreator(DASHBOARD, CALCULATOR),
       new: pathCreator(DASHBOARD, CALCULATOR, "/new"),
     },
+    starred: pathCreator(DASHBOARD, "/starred"),
+    tasks: pathCreator(DASHBOARD, "/tasks"),
   },
 };

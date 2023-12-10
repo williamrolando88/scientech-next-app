@@ -1,4 +1,4 @@
-import { parseSafeNumber } from "@/lib/helpers/numbers";
+import { parseSafeNumber } from "@/lib/helpers/number";
 
 describe("parseSafeNumber", () => {
   test("should return a number when given a valid string representation of a number", () => {

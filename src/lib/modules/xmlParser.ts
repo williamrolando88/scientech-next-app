@@ -1,4 +1,5 @@
-import { Factura } from "@/src/types/xmlParsers";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Factura } from "@/types/xmlParsers";
 import { xml2js } from "xml-js";
 import { FacturaParser } from "../parsers/facturaParsers";
 
@@ -9,7 +10,7 @@ const cleanObjectTree = (obj: any): any => {
   if (Array.isArray(obj)) {
     return obj.map((item) => cleanObjectTree(item));
   }
-  const result: any = {};
+  const result: Record<string, unknown> = {};
   for (const key of Object.keys(obj)) {
     if (obj[key] && obj[key]["_text"]) {
       result[key] = obj[key]["_text"];

@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/DashboardLayout";
+import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import { ReactNode } from "react";
 
 export const metadata = {
