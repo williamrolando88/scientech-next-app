@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 type ReturnType = {
   active: boolean;
@@ -6,17 +6,12 @@ type ReturnType = {
 };
 
 export default function useActiveLink(path: string, deep = true): ReturnType {
-  const { pathname, asPath } = useRouter();
-
+  const pathname = usePathname();
   const checkPath = path.startsWith("#");
 
   const currentPath = path === "/" ? "/" : `${path}/`;
-
-  const normalActive =
-    (!checkPath && pathname === currentPath) || (!checkPath && asPath === currentPath);
-
-  const deepActive =
-    (!checkPath && pathname.includes(currentPath)) || (!checkPath && asPath.includes(currentPath));
+  const normalActive = !checkPath && pathname === currentPath;
+  const deepActive = !checkPath && pathname.includes(currentPath);
 
   return {
     active: deep ? deepActive : normalActive,

@@ -1,9 +1,10 @@
+"use client";
 import { useSettingsContext } from "@/settings/theme/wrappers";
 import { Box } from "@mui/material";
 import { useState } from "react";
 import useResponsive from "../../hooks/useResponsive";
-import Main from "./Main";
 import Header from "./Header";
+import Main from "./Main";
 import NavHorizontal from "./nav/NavHorizontal";
 import NavMini from "./nav/NavMini";
 import NavVertical from "./nav/NavVertical";

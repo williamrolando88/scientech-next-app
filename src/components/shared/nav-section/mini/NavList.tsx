@@ -1,5 +1,5 @@
 import useActiveLink from "@/hooks/useActiveLink";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { NavListProps } from "../types";
 import NavItem from "./NavItem";
@@ -13,7 +13,7 @@ type NavListRootProps = {
 
 export default function NavList({ data, depth, hasChild }: NavListRootProps) {
   const navRef = useRef(null);
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const { active, isExternalLink } = useActiveLink(data.path);
   const [open, setOpen] = useState(false);
 

@@ -1,4 +1,4 @@
-import { DashboardLayoutOld } from "@/components/DashboardLayoutOld";
+import DashboardLayout from "@/components/Dashboard/DashboardLayout";
 import { ReactNode } from "react";
 
 export const metadata = {
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function PrivateLayout({ children }: { children: ReactNode }) {
-  return <DashboardLayoutOld>{children}</DashboardLayoutOld>;
+  return <DashboardLayout>{children}</DashboardLayout>;
 }
