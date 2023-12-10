@@ -1,4 +1,3 @@
-import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -20,12 +19,10 @@ interface DashboardLayoutProps {
 }
 export const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
   return (
-    <ThemeRegistry>
+    <>
       <AppBar position="fixed" sx={{ zIndex: 2000 }}>
         <Toolbar sx={{ backgroundColor: "background.paper" }}>
-          <DashboardIcon
-            sx={{ color: "#444", mr: 2, transform: "translateY(-2px)" }}
-          />
+          <DashboardIcon sx={{ color: "#444", mr: 2, transform: "translateY(-2px)" }} />
 
           <Typography variant="h6" color="text.primary">
             Next.js App Router
@@ -91,6 +88,6 @@ export const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
       >
         {children}
       </Box>
-    </ThemeRegistry>
+    </>
   );
 };
