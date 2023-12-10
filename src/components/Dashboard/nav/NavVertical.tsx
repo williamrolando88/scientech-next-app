@@ -1,13 +1,14 @@
 "use client";
+import ScientechLogo from "@/components/shared/ScientechLogo";
 import { NavSectionVertical } from "@/components/shared/nav-section";
 import Scrollbar from "@/components/shared/scrollbar";
+import navConfig from "@/settings/routes/dashboardNavigation";
 import { NAV } from "@/settings/theme/config-global";
 import { Box, Drawer, Stack } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import useResponsive from "../../../hooks/useResponsive";
 import NavToggleButton from "./NavToggleButton";
-import navConfig from "@/settings/routes/dashboardNavigation";
 
 type Props = {
   openNav: boolean;
@@ -40,12 +41,12 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
         spacing={3}
         sx={{
           pt: 3,
-          pb: 2,
           px: 2.5,
+          pb: 2,
           flexShrink: 0,
         }}
       >
-        Logo
+        <ScientechLogo />
       </Stack>
 
       <NavSectionVertical data={navConfig} />
