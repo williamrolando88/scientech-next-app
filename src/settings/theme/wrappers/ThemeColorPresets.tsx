@@ -1,10 +1,5 @@
 "use client";
-import {
-  ThemeProvider,
-  alpha,
-  createTheme,
-  useTheme,
-} from "@mui/material/styles";
+import { ThemeProvider, alpha, createTheme, useTheme } from "@mui/material/styles";
 import merge from "lodash/merge";
 import { useMemo } from "react";
 import { useSettingsContext } from "./SettingsContext";
@@ -26,7 +21,7 @@ export default function ThemeColorPresets({ children }: Props) {
         primary: `0 8px 16px 0 ${alpha(presetsColor.main, 0.24)}`,
       },
     }),
-    [presetsColor]
+    [presetsColor],
   );
 
   const theme = createTheme(merge(outerTheme, themeOptions));

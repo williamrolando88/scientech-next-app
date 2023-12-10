@@ -30,7 +30,7 @@ export default function ThemeProvider({ children }: Props) {
       shadows: shadows(themeMode),
       customShadows: customShadows(themeMode),
     }),
-    [themeDirection, themeMode]
+    [themeDirection, themeMode],
   );
 
   const theme = createTheme(themeOptions);

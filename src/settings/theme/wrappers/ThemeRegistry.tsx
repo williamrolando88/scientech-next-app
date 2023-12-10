@@ -6,11 +6,7 @@ import NextAppDirEmotionCacheProvider from "./EmotionCache";
 import { SettingsProvider } from "./SettingsContext";
 import ThemeSettings from "./ThemeSettings";
 
-export default function ThemeRegistry({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
   return (
     <SettingsProvider>
       <NextAppDirEmotionCacheProvider options={{ key: "mui" }}>

@@ -1,26 +1,17 @@
 "use client";
 import localStorageAvailable from "@/lib/helpers/localStorageAvailable";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-} from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import { defaultSettings } from "./config-setting";
 import { getPresets, presetsOption } from "./presets";
 import { SettingsContextProps, SettingsValueProps } from "./types";
 
-export const SettingsContext = createContext<SettingsContextProps>(
-  {} as SettingsContextProps
-);
+export const SettingsContext = createContext<SettingsContextProps>({} as SettingsContextProps);
 
 export const useSettingsContext = () => {
   const context = useContext(SettingsContext);
 
-  if (!context)
-    throw new Error("useSettingsContext must be use inside SettingsProvider");
+  if (!context) throw new Error("useSettingsContext must be use inside SettingsProvider");
 
   return context;
 };
@@ -30,16 +21,11 @@ type SettingsProviderProps = {
 };
 
 export function SettingsProvider({ children }: SettingsProviderProps) {
-  const [settings, setSettings] = useLocalStorage<SettingsValueProps>(
-    "settings",
-    defaultSettings
-  );
+  const [settings, setSettings] = useLocalStorage<SettingsValueProps>("settings", defaultSettings);
 
   const storageAvailable = localStorageAvailable();
 
-  const langStorage = storageAvailable
-    ? localStorage.getItem("i18nextLng")
-    : "";
+  const langStorage = storageAvailable ? localStorage.getItem("i18nextLng") : "";
 
   const isArabic = langStorage === "ar";
 
@@ -61,7 +47,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       // @ts-expect-error - It is not critical
       setSettings({ ...settings, themeMode });
     },
-    [setSettings, settings]
+    [setSettings, settings],
   );
 
   // Direction
@@ -76,7 +62,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       // @ts-expect-error - It is not critical
       setSettings({ ...settings, themeDirection });
     },
-    [setSettings, settings]
+    [setSettings, settings],
   );
 
   const onChangeDirectionByLang = useCallback(
@@ -84,13 +70,12 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       const themeDirection = lang === "ar" ? "rtl" : "ltr";
       setSettings({ ...settings, themeDirection });
     },
-    [setSettings, settings]
+    [setSettings, settings],
   );
 
   // Layout
   const onToggleLayout = useCallback(() => {
-    const themeLayout =
-      settings?.themeLayout === "vertical" ? "mini" : "vertical";
+    const themeLayout = settings?.themeLayout === "vertical" ? "mini" : "vertical";
     setSettings({ ...settings, themeLayout });
   }, [setSettings, settings]);
 
@@ -100,13 +85,12 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       // @ts-expect-error - It is not critical
       setSettings({ ...settings, themeLayout });
     },
-    [setSettings, settings]
+    [setSettings, settings],
   );
 
   // Contrast
   const onToggleContrast = useCallback(() => {
-    const themeContrast =
-      settings?.themeContrast === "default" ? "bold" : "default";
+    const themeContrast = settings?.themeContrast === "default" ? "bold" : "default";
     setSettings({ ...settings, themeContrast });
   }, [setSettings, settings]);
 
@@ -116,7 +100,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       // @ts-expect-error - It is not critical
       setSettings({ ...settings, themeContrast });
     },
-    [setSettings, settings]
+    [setSettings, settings],
   );
 
   // Color
@@ -126,7 +110,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       // @ts-expect-error - It is not critical
       setSettings({ ...settings, themeColorPresets });
     },
-    [setSettings, settings]
+    [setSettings, settings],
   );
 
   // Stretch
@@ -174,12 +158,8 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
       onToggleStretch,
       onChangeColorPresets,
       onResetSetting,
-    ]
+    ],
   );
 
-  return (
-    <SettingsContext.Provider value={memoizedValue}>
-      {children}
-    </SettingsContext.Provider>
-  );
+  return <SettingsContext.Provider value={memoizedValue}>{children}</SettingsContext.Provider>;
 }

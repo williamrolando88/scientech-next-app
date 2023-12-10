@@ -12,8 +12,8 @@ import {
   SwitchProps,
   TabProps,
   ToggleButtonProps,
-} from '@mui/material';
-import { Theme, alpha } from '@mui/material/styles';
+} from "@mui/material";
+import { Theme, alpha } from "@mui/material/styles";
 import {
   CheckboxCheckedIcon,
   CheckboxIcon,
@@ -30,33 +30,26 @@ import {
   TreeViewEndIcon,
   TreeViewExpandIcon,
   WarningIcon,
-} from './CustomIcons';
+} from "./CustomIcons";
 
-const COLORS = [
-  'primary',
-  'secondary',
-  'info',
-  'success',
-  'warning',
-  'error',
-] as const;
+const COLORS = ["primary", "secondary", "info", "success", "warning", "error"] as const;
 
-declare module '@mui/material/ButtonGroup' {
+declare module "@mui/material/ButtonGroup" {
   interface ButtonGroupPropsVariantOverrides {
     soft: true;
   }
 }
-declare module '@mui/material/Button' {
+declare module "@mui/material/Button" {
   interface ButtonPropsVariantOverrides {
     soft: true;
   }
 }
-declare module '@mui/material/Chip' {
+declare module "@mui/material/Chip" {
   interface ChipPropsVariantOverrides {
     soft: true;
   }
 }
-declare module '@mui/material/Fab' {
+declare module "@mui/material/Fab" {
   interface FabPropsVariantOverrides {
     outlined: true;
     outlinedExtended: true;
@@ -70,14 +63,14 @@ function Accordion(theme: Theme) {
     MuiAccordion: {
       styleOverrides: {
         root: {
-          backgroundColor: 'transparent',
-          '&.Mui-expanded': {
+          backgroundColor: "transparent",
+          "&.Mui-expanded": {
             boxShadow: theme.customShadows.z8,
             borderRadius: theme.shape.borderRadius,
             backgroundColor: theme.palette.background.paper,
           },
-          '&.Mui-disabled': {
-            backgroundColor: 'transparent',
+          "&.Mui-disabled": {
+            backgroundColor: "transparent",
           },
         },
       },
@@ -87,16 +80,16 @@ function Accordion(theme: Theme) {
         root: {
           paddingLeft: theme.spacing(2),
           paddingRight: theme.spacing(1),
-          '&.Mui-disabled': {
+          "&.Mui-disabled": {
             opacity: 1,
             color: theme.palette.action.disabled,
-            '& .MuiTypography-root': {
-              color: 'inherit',
+            "& .MuiTypography-root": {
+              color: "inherit",
             },
           },
         },
         expandIconWrapper: {
-          color: 'inherit',
+          color: "inherit",
         },
       },
     },
@@ -104,20 +97,20 @@ function Accordion(theme: Theme) {
 }
 
 function Alert(theme: Theme) {
-  const COLORS = ['info', 'success', 'warning', 'error'] as const;
-  const isLight = theme.palette.mode === 'light';
+  const COLORS = ["info", "success", "warning", "error"] as const;
+  const isLight = theme.palette.mode === "light";
 
   const rootStyle = (ownerState: AlertProps) => {
-    const standardVariant = ownerState.variant === 'standard';
-    const filledVariant = ownerState.variant === 'filled';
-    const outlinedVariant = ownerState.variant === 'outlined';
+    const standardVariant = ownerState.variant === "standard";
+    const filledVariant = ownerState.variant === "filled";
+    const outlinedVariant = ownerState.variant === "outlined";
     const colorStyle = COLORS.map((color) => ({
       ...(ownerState.severity === color && {
         ...(standardVariant && {
-          color: theme.palette[color][isLight ? 'darker' : 'lighter'],
-          backgroundColor: theme.palette[color][isLight ? 'lighter' : 'darker'],
-          '& .MuiAlert-icon': {
-            color: theme.palette[color][isLight ? 'main' : 'light'],
+          color: theme.palette[color][isLight ? "darker" : "lighter"],
+          backgroundColor: theme.palette[color][isLight ? "lighter" : "darker"],
+          "& .MuiAlert-icon": {
+            color: theme.palette[color][isLight ? "main" : "light"],
           },
         }),
         ...(filledVariant && {
@@ -125,9 +118,9 @@ function Alert(theme: Theme) {
           backgroundColor: theme.palette[color].main,
         }),
         ...(outlinedVariant && {
-          color: theme.palette[color][isLight ? 'dark' : 'light'],
+          color: theme.palette[color][isLight ? "dark" : "light"],
           border: `solid 1px ${theme.palette[color].main}`,
-          '& .MuiAlert-icon': {
+          "& .MuiAlert-icon": {
             color: theme.palette[color].main,
           },
         }),
@@ -148,8 +141,7 @@ function Alert(theme: Theme) {
         },
       },
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: AlertProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: AlertProps }) => rootStyle(ownerState),
         icon: {
           opacity: 1,
         },
@@ -170,12 +162,12 @@ function Autocomplete(theme: Theme) {
     MuiAutocomplete: {
       styleOverrides: {
         root: {
-          '& span.MuiAutocomplete-tag': {
+          "& span.MuiAutocomplete-tag": {
             ...theme.typography.body2,
             width: 24,
             height: 24,
-            lineHeight: '24px',
-            textAlign: 'center',
+            lineHeight: "24px",
+            textAlign: "center",
             borderRadius: theme.shape.borderRadius,
             backgroundColor: alpha(theme.palette.grey[500], 0.16),
           },
@@ -213,12 +205,12 @@ function Avatar(theme: Theme) {
       },
       styleOverrides: {
         root: {
-          justifyContent: 'flex-end',
+          justifyContent: "flex-end",
         },
         avatar: {
           fontSize: 16,
           fontWeight: theme.typography.fontWeightMedium,
-          '&:first-of-type': {
+          "&:first-of-type": {
             fontSize: 12,
             color: theme.palette.primary.main,
             backgroundColor: theme.palette.primary.lighter,
@@ -237,7 +229,7 @@ function Backdrop(theme: Theme) {
           backgroundColor: alpha(theme.palette.grey[800], 0.8),
         },
         invisible: {
-          background: 'transparent',
+          background: "transparent",
         },
       },
     },
@@ -251,7 +243,7 @@ function Badge(_theme: Theme) {
         dot: {
           width: 10,
           height: 10,
-          borderRadius: '50%',
+          borderRadius: "50%",
         },
       },
     },
@@ -267,9 +259,9 @@ function Breadcrumbs(theme: Theme) {
           marginRight: theme.spacing(2),
         },
         li: {
-          display: 'inline-flex',
+          display: "inline-flex",
           margin: theme.spacing(0.25, 0),
-          '& > *': {
+          "& > *": {
             ...theme.typography.body2,
           },
         },
@@ -279,42 +271,42 @@ function Breadcrumbs(theme: Theme) {
 }
 
 function Button(theme: Theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette.mode === "light";
 
   const rootStyle = (ownerState: ButtonProps) => {
-    const inheritColor = ownerState.color === 'inherit';
-    const containedVariant = ownerState.variant === 'contained';
-    const outlinedVariant = ownerState.variant === 'outlined';
-    const textVariant = ownerState.variant === 'text';
-    const softVariant = ownerState.variant === 'soft';
-    const smallSize = ownerState.size === 'small';
-    const largeSize = ownerState.size === 'large';
+    const inheritColor = ownerState.color === "inherit";
+    const containedVariant = ownerState.variant === "contained";
+    const outlinedVariant = ownerState.variant === "outlined";
+    const textVariant = ownerState.variant === "text";
+    const softVariant = ownerState.variant === "soft";
+    const smallSize = ownerState.size === "small";
+    const largeSize = ownerState.size === "large";
 
     const defaultStyle = {
       ...(inheritColor && {
         ...(containedVariant && {
           color: theme.palette.grey[800],
-          '&:hover': {
+          "&:hover": {
             boxShadow: theme.customShadows.z8,
             backgroundColor: theme.palette.grey[400],
           },
         }),
         ...(outlinedVariant && {
           borderColor: alpha(theme.palette.grey[500], 0.32),
-          '&:hover': {
+          "&:hover": {
             borderColor: theme.palette.text.primary,
             backgroundColor: theme.palette.action.hover,
           },
         }),
         ...(textVariant && {
-          '&:hover': {
+          "&:hover": {
             backgroundColor: theme.palette.action.hover,
           },
         }),
         ...(softVariant && {
           color: theme.palette.text.primary,
           backgroundColor: alpha(theme.palette.grey[500], 0.08),
-          '&:hover': {
+          "&:hover": {
             backgroundColor: alpha(theme.palette.grey[500], 0.24),
           },
         }),
@@ -324,14 +316,14 @@ function Button(theme: Theme) {
     const colorStyle = COLORS.map((color) => ({
       ...(ownerState.color === color && {
         ...(containedVariant && {
-          '&:hover': {
+          "&:hover": {
             boxShadow: theme.customShadows[color],
           },
         }),
         ...(softVariant && {
-          color: theme.palette[color][isLight ? 'dark' : 'light'],
+          color: theme.palette[color][isLight ? "dark" : "light"],
           backgroundColor: alpha(theme.palette[color].main, 0.16),
-          '&:hover': {
+          "&:hover": {
             backgroundColor: alpha(theme.palette[color].main, 0.32),
           },
         }),
@@ -339,7 +331,7 @@ function Button(theme: Theme) {
     }));
 
     const disabledState = {
-      '&.Mui-disabled': {
+      "&.Mui-disabled": {
         ...(softVariant && {
           backgroundColor: theme.palette.action.disabledBackground,
         }),
@@ -351,14 +343,14 @@ function Button(theme: Theme) {
         height: 30,
         fontSize: 13,
         ...(softVariant && {
-          padding: '4px 10px',
+          padding: "4px 10px",
         }),
       }),
       ...(largeSize && {
         height: 48,
         fontSize: 15,
         ...(softVariant && {
-          padding: '8px 22px',
+          padding: "8px 22px",
         }),
       }),
     };
@@ -373,8 +365,7 @@ function Button(theme: Theme) {
       },
 
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: ButtonProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: ButtonProps }) => rootStyle(ownerState),
       },
     },
   };
@@ -382,26 +373,26 @@ function Button(theme: Theme) {
 
 function ButtonGroup(theme: Theme) {
   const rootStyle = (ownerState: ButtonGroupProps) => {
-    const inheritColor = ownerState.color === 'inherit';
-    const containedVariant = ownerState.variant === 'contained';
-    const outlinedVariant = ownerState.variant === 'outlined';
-    const textVariant = ownerState.variant === 'text';
-    const softVariant = ownerState.variant === 'soft';
-    const horizontalOrientation = ownerState.orientation === 'horizontal';
-    const verticalOrientation = ownerState.orientation === 'vertical';
+    const inheritColor = ownerState.color === "inherit";
+    const containedVariant = ownerState.variant === "contained";
+    const outlinedVariant = ownerState.variant === "outlined";
+    const textVariant = ownerState.variant === "text";
+    const softVariant = ownerState.variant === "soft";
+    const horizontalOrientation = ownerState.orientation === "horizontal";
+    const verticalOrientation = ownerState.orientation === "vertical";
     const defaultStyle = {
-      '& .MuiButtonGroup-grouped': {
-        '&:not(:last-of-type)': {
+      "& .MuiButtonGroup-grouped": {
+        "&:not(:last-of-type)": {
           ...(!outlinedVariant && {
-            borderStyle: 'solid',
+            borderStyle: "solid",
             ...(inheritColor && {
               borderColor: alpha(theme.palette.grey[500], 0.32),
             }),
             ...(horizontalOrientation && {
-              borderWidth: '0px 1px 0px 0px',
+              borderWidth: "0px 1px 0px 0px",
             }),
             ...(verticalOrientation && {
-              borderWidth: '0px 0px 1px 0px',
+              borderWidth: "0px 0px 1px 0px",
             }),
           }),
         },
@@ -409,8 +400,8 @@ function ButtonGroup(theme: Theme) {
     };
 
     const colorStyle = COLORS.map((color) => ({
-      '& .MuiButtonGroup-grouped': {
-        '&:not(:last-of-type)': {
+      "& .MuiButtonGroup-grouped": {
+        "&:not(:last-of-type)": {
           ...(!outlinedVariant && {
             ...(ownerState.color === color && {
               ...(containedVariant && {
@@ -429,8 +420,8 @@ function ButtonGroup(theme: Theme) {
     }));
 
     const disabledState = {
-      '& .MuiButtonGroup-grouped.Mui-disabled': {
-        '&:not(:last-of-type)': {
+      "& .MuiButtonGroup-grouped.Mui-disabled": {
+        "&:not(:last-of-type)": {
           borderColor: theme.palette.action.disabledBackground,
         },
       },
@@ -445,8 +436,7 @@ function ButtonGroup(theme: Theme) {
         disableElevation: true,
       },
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: ButtonGroupProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: ButtonGroupProps }) => rootStyle(ownerState),
       },
     },
   };
@@ -457,7 +447,7 @@ function Card(theme: Theme) {
     MuiCard: {
       styleOverrides: {
         root: {
-          position: 'relative',
+          position: "relative",
           boxShadow: theme.customShadows.card,
           borderRadius: Number(theme.shape.borderRadius) * 2,
           zIndex: 0, // Fix Safari overflow: hidden with border radius
@@ -466,9 +456,9 @@ function Card(theme: Theme) {
     },
     MuiCardHeader: {
       defaultProps: {
-        titleTypographyProps: { variant: 'h6' },
+        titleTypographyProps: { variant: "h6" },
         subheaderTypographyProps: {
-          variant: 'body2',
+          variant: "body2",
           marginTop: theme.spacing(0.5),
         },
       },
@@ -499,11 +489,11 @@ function Checkbox(theme: Theme) {
       styleOverrides: {
         root: ({ ownerState }: { ownerState: CheckboxProps }) => ({
           padding: theme.spacing(1),
-          ...(ownerState.size === 'small' && {
-            '& svg': { width: 20, height: 20 },
+          ...(ownerState.size === "small" && {
+            "& svg": { width: 20, height: 20 },
           }),
-          ...(ownerState.size === 'medium' && {
-            '& svg': { width: 24, height: 24 },
+          ...(ownerState.size === "medium" && {
+            "& svg": { width: 24, height: 24 },
           }),
         }),
       },
@@ -512,16 +502,16 @@ function Checkbox(theme: Theme) {
 }
 
 function Chip(theme: Theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette.mode === "light";
   const rootStyle = (ownerState: ChipProps) => {
-    const defaultColor = ownerState.color === 'default';
-    const filledVariant = ownerState.variant === 'filled';
-    const outlinedVariant = ownerState.variant === 'outlined';
-    const softVariant = ownerState.variant === 'soft';
+    const defaultColor = ownerState.color === "default";
+    const filledVariant = ownerState.variant === "filled";
+    const outlinedVariant = ownerState.variant === "outlined";
+    const softVariant = ownerState.variant === "soft";
     const defaultStyle = {
       ...(defaultColor && {
-        '& .MuiChip-avatar': {
-          color: theme.palette.text[isLight ? 'secondary' : 'primary'],
+        "& .MuiChip-avatar": {
+          color: theme.palette.text[isLight ? "secondary" : "primary"],
           backgroundColor: alpha(theme.palette.grey[500], 0.48),
         },
         ...(outlinedVariant && {
@@ -530,7 +520,7 @@ function Chip(theme: Theme) {
         ...(softVariant && {
           color: theme.palette.text.primary,
           backgroundColor: alpha(theme.palette.grey[500], 0.16),
-          '&:hover': {
+          "&:hover": {
             backgroundColor: alpha(theme.palette.grey[500], 0.32),
           },
         }),
@@ -539,30 +529,27 @@ function Chip(theme: Theme) {
 
     const colorStyle = COLORS.map((color) => ({
       ...(ownerState.color === color && {
-        '& .MuiChip-avatar': {
+        "& .MuiChip-avatar": {
           color: theme.palette[color].lighter,
           backgroundColor: theme.palette[color].dark,
         },
         ...(filledVariant && {
-          '& .MuiChip-deleteIcon': {
+          "& .MuiChip-deleteIcon": {
             color: alpha(theme.palette[color].contrastText, 0.56),
-            '&:hover': {
+            "&:hover": {
               color: theme.palette[color].contrastText,
             },
           },
         }),
         ...(softVariant && {
-          color: theme.palette[color][isLight ? 'dark' : 'light'],
+          color: theme.palette[color][isLight ? "dark" : "light"],
           backgroundColor: alpha(theme.palette[color].main, 0.16),
-          '&:hover': {
+          "&:hover": {
             backgroundColor: alpha(theme.palette[color].main, 0.32),
           },
-          '& .MuiChip-deleteIcon': {
-            color: alpha(
-              theme.palette[color][isLight ? 'dark' : 'light'],
-              0.48
-            ),
-            '&:hover': {
+          "& .MuiChip-deleteIcon": {
+            color: alpha(theme.palette[color][isLight ? "dark" : "light"], 0.48),
+            "&:hover": {
               color: theme.palette[color].dark,
             },
           },
@@ -580,8 +567,7 @@ function Chip(theme: Theme) {
       },
 
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: ChipProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: ChipProps }) => rootStyle(ownerState),
       },
     },
   };
@@ -598,7 +584,7 @@ function ControlLabel(theme: Theme) {
     },
     MuiFormHelperText: {
       defaultProps: {
-        component: 'div',
+        component: "div",
       },
       styleOverrides: {
         root: {
@@ -623,7 +609,7 @@ function DataGrid(theme: Theme) {
         root: {
           borderRadius: 0,
           border: `1px solid transparent`,
-          '& .MuiTablePagination-root': {
+          "& .MuiTablePagination-root": {
             borderTop: 0,
           },
         },
@@ -636,10 +622,10 @@ function DataGrid(theme: Theme) {
         toolbarContainer: {
           padding: theme.spacing(2),
           backgroundColor: theme.palette.background.neutral,
-          '& .MuiButton-root': {
+          "& .MuiButton-root": {
             marginRight: theme.spacing(1.5),
             color: theme.palette.text.primary,
-            '&:hover': {
+            "&:hover": {
               backgroundColor: theme.palette.action.hover,
             },
           },
@@ -648,32 +634,32 @@ function DataGrid(theme: Theme) {
           boxShadow: theme.customShadows.dropdown,
         },
         menu: {
-          '& .MuiPaper-root': {
+          "& .MuiPaper-root": {
             boxShadow: theme.customShadows.dropdown,
           },
-          '& .MuiMenuItem-root': {
+          "& .MuiMenuItem-root": {
             ...theme.typography.body2,
-            '& .MuiListItemIcon-root': {
-              minWidth: 'auto',
+            "& .MuiListItemIcon-root": {
+              minWidth: "auto",
             },
           },
         },
         panelFooter: {
           padding: theme.spacing(2),
-          justifyContent: 'flex-end',
+          justifyContent: "flex-end",
           borderTop: `1px solid ${theme.palette.divider}`,
-          '& .MuiButton-root': {
-            '&:first-of-type': {
+          "& .MuiButton-root": {
+            "&:first-of-type": {
               marginRight: theme.spacing(1.5),
               color: theme.palette.text.primary,
-              '&:hover': {
+              "&:hover": {
                 backgroundColor: theme.palette.action.hover,
               },
             },
-            '&:last-of-type': {
+            "&:last-of-type": {
               color: theme.palette.common.white,
               backgroundColor: theme.palette.primary.main,
-              '&:hover': {
+              "&:hover": {
                 backgroundColor: theme.palette.primary.dark,
               },
             },
@@ -681,21 +667,21 @@ function DataGrid(theme: Theme) {
         },
         filterForm: {
           padding: theme.spacing(1.5, 0),
-          '& .MuiFormControl-root': {
+          "& .MuiFormControl-root": {
             margin: theme.spacing(0, 0.5),
           },
-          '& .MuiInput-root': {
+          "& .MuiInput-root": {
             marginTop: theme.spacing(3),
-            '&::before, &::after': {
-              display: 'none',
+            "&::before, &::after": {
+              display: "none",
             },
-            '& .MuiNativeSelect-select, .MuiInput-input': {
+            "& .MuiNativeSelect-select, .MuiInput-input": {
               ...theme.typography.body2,
               padding: theme.spacing(0.75, 1),
               borderRadius: theme.shape.borderRadius,
               backgroundColor: theme.palette.background.neutral,
             },
-            '& .MuiSvgIcon-root': {
+            "& .MuiSvgIcon-root": {
               right: 4,
             },
           },
@@ -711,26 +697,26 @@ function Dialog(theme: Theme) {
       styleOverrides: {
         paper: {
           boxShadow: theme.customShadows.dialog,
-          '&.MuiPaper-rounded': {
+          "&.MuiPaper-rounded": {
             borderRadius: Number(theme.shape.borderRadius) * 2,
           },
-          '&.MuiDialog-paperFullScreen': {
+          "&.MuiDialog-paperFullScreen": {
             borderRadius: 0,
           },
-          '&.MuiDialog-paper .MuiDialogActions-root': {
+          "&.MuiDialog-paper .MuiDialogActions-root": {
             padding: theme.spacing(3),
           },
-          '@media (max-width: 600px)': {
+          "@media (max-width: 600px)": {
             margin: theme.spacing(2),
           },
-          '@media (max-width: 663.95px)': {
-            '&.MuiDialog-paperWidthSm.MuiDialog-paperScrollBody': {
-              maxWidth: '100%',
+          "@media (max-width: 663.95px)": {
+            "&.MuiDialog-paperWidthSm.MuiDialog-paperScrollBody": {
+              maxWidth: "100%",
             },
           },
         },
         paperFullWidth: {
-          width: '100%',
+          width: "100%",
         },
       },
     },
@@ -748,7 +734,7 @@ function Dialog(theme: Theme) {
         },
         dividers: {
           borderTop: 0,
-          borderBottomStyle: 'dashed',
+          borderBottomStyle: "dashed",
           paddingBottom: theme.spacing(3),
         },
       },
@@ -756,7 +742,7 @@ function Dialog(theme: Theme) {
     MuiDialogActions: {
       styleOverrides: {
         root: {
-          '& > :not(:first-of-type)': {
+          "& > :not(:first-of-type)": {
             marginLeft: theme.spacing(1.5),
           },
         },
@@ -766,17 +752,17 @@ function Dialog(theme: Theme) {
 }
 
 function Drawer(theme: Theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette.mode === "light";
 
   return {
     MuiDrawer: {
       styleOverrides: {
         root: ({ ownerState }: { ownerState: DrawerProps }) => ({
-          ...(ownerState.variant === 'temporary' && {
-            '& .MuiDrawer-paper': {
+          ...(ownerState.variant === "temporary" && {
+            "& .MuiDrawer-paper": {
               boxShadow: `-40px 40px 80px -8px ${alpha(
                 isLight ? theme.palette.grey[500] : theme.palette.common.black,
-                0.24
+                0.24,
               )}`,
             },
           }),
@@ -787,34 +773,34 @@ function Drawer(theme: Theme) {
 }
 
 function Fab(theme: Theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette.mode === "light";
 
   const rootStyle = (ownerState: FabProps) => {
-    const defaultColor = ownerState.color === 'default';
-    const inheritColor = ownerState.color === 'inherit';
-    const circularVariant = ownerState.variant === 'circular';
-    const extendedVariant = ownerState.variant === 'extended';
-    const outlinedVariant = ownerState.variant === 'outlined';
-    const outlinedExtendedVariant = ownerState.variant === 'outlinedExtended';
-    const softVariant = ownerState.variant === 'soft';
-    const softExtendedVariant = ownerState.variant === 'softExtended';
+    const defaultColor = ownerState.color === "default";
+    const inheritColor = ownerState.color === "inherit";
+    const circularVariant = ownerState.variant === "circular";
+    const extendedVariant = ownerState.variant === "extended";
+    const outlinedVariant = ownerState.variant === "outlined";
+    const outlinedExtendedVariant = ownerState.variant === "outlinedExtended";
+    const softVariant = ownerState.variant === "soft";
+    const softExtendedVariant = ownerState.variant === "softExtended";
     const defaultStyle = {
-      '&:hover, &:active': {
-        boxShadow: 'none',
+      "&:hover, &:active": {
+        boxShadow: "none",
       },
       ...((circularVariant || extendedVariant) && {
         ...((defaultColor || inheritColor) && {
           color: theme.palette.grey[800],
           boxShadow: theme.customShadows.z8,
-          '&:hover': {
+          "&:hover": {
             backgroundColor: theme.palette.grey[400],
           },
         }),
         ...(inheritColor && {
           ...(!isLight && {
-            color: 'inherit',
+            color: "inherit",
             backgroundColor: theme.palette.grey[800],
-            '&:hover': {
+            "&:hover": {
               backgroundColor: theme.palette.grey[700],
             },
           }),
@@ -822,11 +808,11 @@ function Fab(theme: Theme) {
       }),
 
       ...((outlinedVariant || outlinedExtendedVariant) && {
-        boxShadow: 'none',
-        backgroundColor: 'transparent',
+        boxShadow: "none",
+        backgroundColor: "transparent",
         ...((defaultColor || inheritColor) && {
           border: `solid 1px ${alpha(theme.palette.grey[500], 0.32)}`,
-          '&:hover': {
+          "&:hover": {
             backgroundColor: theme.palette.action.hover,
           },
         }),
@@ -838,17 +824,17 @@ function Fab(theme: Theme) {
       }),
 
       ...((softVariant || softExtendedVariant) && {
-        boxShadow: 'none',
+        boxShadow: "none",
         ...(defaultColor && {
           color: theme.palette.grey[800],
           backgroundColor: theme.palette.grey[300],
-          '&:hover': {
+          "&:hover": {
             backgroundColor: theme.palette.grey[400],
           },
         }),
         ...(inheritColor && {
           backgroundColor: alpha(theme.palette.grey[500], 0.08),
-          '&:hover': {
+          "&:hover": {
             backgroundColor: alpha(theme.palette.grey[500], 0.24),
           },
         }),
@@ -859,22 +845,22 @@ function Fab(theme: Theme) {
       ...(ownerState.color === color && {
         ...((circularVariant || extendedVariant) && {
           boxShadow: theme.customShadows[color],
-          '&:hover': {
+          "&:hover": {
             backgroundColor: theme.palette[color].dark,
           },
         }),
         ...((outlinedVariant || outlinedExtendedVariant) && {
           color: theme.palette[color].main,
           border: `solid 1px ${alpha(theme.palette[color].main, 0.48)}`,
-          '&:hover': {
+          "&:hover": {
             backgroundColor: alpha(theme.palette[color].main, 0.08),
             border: `solid 1px ${theme.palette[color].main}`,
           },
         }),
         ...((softVariant || softExtendedVariant) && {
-          color: theme.palette[color][isLight ? 'dark' : 'light'],
+          color: theme.palette[color][isLight ? "dark" : "light"],
           backgroundColor: alpha(theme.palette[color].main, 0.16),
-          '&:hover': {
+          "&:hover": {
             backgroundColor: alpha(theme.palette[color].main, 0.32),
           },
         }),
@@ -882,35 +868,33 @@ function Fab(theme: Theme) {
     }));
 
     const disabledState = {
-      '&.Mui-disabled': {
+      "&.Mui-disabled": {
         ...((outlinedVariant || outlinedExtendedVariant) && {
-          backgroundColor: 'transparent',
+          backgroundColor: "transparent",
           border: `solid 1px ${theme.palette.action.disabledBackground}`,
         }),
       },
     };
 
     const size = {
-      ...((extendedVariant ||
-        outlinedExtendedVariant ||
-        softExtendedVariant) && {
-        width: 'auto',
-        '& svg': {
+      ...((extendedVariant || outlinedExtendedVariant || softExtendedVariant) && {
+        width: "auto",
+        "& svg": {
           marginRight: theme.spacing(1),
         },
-        ...(ownerState.size === 'small' && {
+        ...(ownerState.size === "small" && {
           height: 34,
           minHeight: 34,
           borderRadius: 17,
           padding: theme.spacing(0, 1),
         }),
-        ...(ownerState.size === 'medium' && {
+        ...(ownerState.size === "medium" && {
           height: 40,
           minHeight: 40,
           borderRadius: 20,
           padding: theme.spacing(0, 2),
         }),
-        ...(ownerState.size === 'large' && {
+        ...(ownerState.size === "large" && {
           height: 48,
           minHeight: 48,
           borderRadius: 24,
@@ -925,12 +909,11 @@ function Fab(theme: Theme) {
   return {
     MuiFab: {
       defaultProps: {
-        color: 'primary',
+        color: "primary",
       },
 
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: FabProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: FabProps }) => rootStyle(ownerState),
       },
     },
   };
@@ -941,14 +924,14 @@ function Input(theme: Theme) {
     MuiInputBase: {
       styleOverrides: {
         root: {
-          '&.Mui-disabled': {
-            '& svg': {
+          "&.Mui-disabled": {
+            "& svg": {
               color: theme.palette.text.disabled,
             },
           },
         },
         input: {
-          '&::placeholder': {
+          "&::placeholder": {
             opacity: 1,
             color: theme.palette.text.disabled,
           },
@@ -958,10 +941,10 @@ function Input(theme: Theme) {
     MuiInput: {
       styleOverrides: {
         underline: {
-          '&:before': {
+          "&:before": {
             borderBottomColor: alpha(theme.palette.grey[500], 0.56),
           },
-          '&:after': {
+          "&:after": {
             borderBottomColor: theme.palette.text.primary,
           },
         },
@@ -970,7 +953,7 @@ function Input(theme: Theme) {
     MuiTextField: {
       styleOverrides: {
         root: {
-          '& .MuiInputLabel-root.Mui-focused': {
+          "& .MuiInputLabel-root.Mui-focused": {
             color: theme.palette.text.primary,
           },
         },
@@ -981,19 +964,19 @@ function Input(theme: Theme) {
         root: {
           borderRadius: theme.shape.borderRadius,
           backgroundColor: alpha(theme.palette.grey[500], 0.08),
-          '&:hover': {
+          "&:hover": {
             backgroundColor: alpha(theme.palette.grey[500], 0.16),
           },
-          '&.Mui-focused': {
+          "&.Mui-focused": {
             backgroundColor: alpha(theme.palette.grey[500], 0.16),
           },
-          '&.Mui-disabled': {
+          "&.Mui-disabled": {
             backgroundColor: theme.palette.action.disabledBackground,
           },
         },
         underline: {
-          '&:before, :after': {
-            display: 'none',
+          "&:before, :after": {
+            display: "none",
           },
         },
       },
@@ -1001,17 +984,17 @@ function Input(theme: Theme) {
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          '& .MuiOutlinedInput-notchedOutline': {
+          "& .MuiOutlinedInput-notchedOutline": {
             borderColor: alpha(theme.palette.grey[500], 0.32),
           },
-          '&.Mui-focused': {
-            '& .MuiOutlinedInput-notchedOutline': {
+          "&.Mui-focused": {
+            "& .MuiOutlinedInput-notchedOutline": {
               borderWidth: 1,
               borderColor: theme.palette.text.primary,
             },
           },
-          '&.Mui-disabled': {
-            '& .MuiOutlinedInput-notchedOutline': {
+          "&.Mui-disabled": {
+            "& .MuiOutlinedInput-notchedOutline": {
               borderColor: theme.palette.action.disabledBackground,
             },
           },
@@ -1025,7 +1008,7 @@ function Link(_theme: Theme) {
   return {
     MuiLink: {
       defaultProps: {
-        underline: 'hover',
+        underline: "hover",
       },
     },
   };
@@ -1036,8 +1019,8 @@ function List(theme: Theme) {
     MuiListItemIcon: {
       styleOverrides: {
         root: {
-          color: 'inherit',
-          minWidth: 'auto',
+          color: "inherit",
+          minWidth: "auto",
           marginRight: theme.spacing(2),
         },
       },
@@ -1045,7 +1028,7 @@ function List(theme: Theme) {
     MuiListItemAvatar: {
       styleOverrides: {
         root: {
-          minWidth: 'auto',
+          minWidth: "auto",
           marginRight: theme.spacing(2),
         },
       },
@@ -1070,17 +1053,17 @@ function LoadingButton(_theme: Theme) {
     MuiLoadingButton: {
       variants: [
         {
-          props: { loading: true, loadingPosition: 'start', size: 'small' },
+          props: { loading: true, loadingPosition: "start", size: "small" },
           style: {
-            '& .MuiLoadingButton-loadingIndicatorStart': {
+            "& .MuiLoadingButton-loadingIndicatorStart": {
               left: 10,
             },
           },
         },
         {
-          props: { loading: true, loadingPosition: 'end', size: 'small' },
+          props: { loading: true, loadingPosition: "end", size: "small" },
           style: {
-            '& .MuiLoadingButton-loadingIndicatorEnd': {
+            "& .MuiLoadingButton-loadingIndicatorEnd": {
               right: 10,
             },
           },
@@ -1104,9 +1087,9 @@ function Menu(theme: Theme) {
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          '&.Mui-selected': {
+          "&.Mui-selected": {
             backgroundColor: theme.palette.action.selected,
-            '&:hover': {
+            "&:hover": {
               backgroundColor: theme.palette.action.hover,
             },
           },
@@ -1117,7 +1100,7 @@ function Menu(theme: Theme) {
 }
 
 // NEW VARIANT
-declare module '@mui/material/Pagination' {
+declare module "@mui/material/Pagination" {
   interface PaginationPropsVariantOverrides {
     soft: true;
   }
@@ -1131,17 +1114,17 @@ declare module '@mui/material/Pagination' {
 }
 
 function Pagination(theme: Theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette.mode === "light";
 
   const rootStyle = (ownerState: PaginationProps) => {
-    const outlinedVariant = ownerState.variant === 'outlined';
-    const softVariant = ownerState.variant === 'soft';
+    const outlinedVariant = ownerState.variant === "outlined";
+    const softVariant = ownerState.variant === "soft";
     const defaultStyle = {
-      '& .MuiPaginationItem-root': {
+      "& .MuiPaginationItem-root": {
         ...(outlinedVariant && {
           borderColor: alpha(theme.palette.grey[500], 0.32),
         }),
-        '&.Mui-selected': {
+        "&.Mui-selected": {
           fontWeight: theme.typography.fontWeightMedium,
         },
       },
@@ -1150,11 +1133,11 @@ function Pagination(theme: Theme) {
     const colorStyle = COLORS.map((color) => ({
       ...(ownerState.color === color && {
         ...(softVariant && {
-          '& .MuiPaginationItem-root': {
-            '&.Mui-selected': {
-              color: theme.palette[color][isLight ? 'dark' : 'light'],
+          "& .MuiPaginationItem-root": {
+            "&.Mui-selected": {
+              color: theme.palette[color][isLight ? "dark" : "light"],
               backgroundColor: alpha(theme.palette[color].main, 0.16),
-              '&:hover': {
+              "&:hover": {
                 backgroundColor: alpha(theme.palette[color].main, 0.32),
               },
             },
@@ -1169,12 +1152,11 @@ function Pagination(theme: Theme) {
   return {
     MuiPagination: {
       defaultProps: {
-        color: 'primary',
+        color: "primary",
       },
 
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: PaginationProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: PaginationProps }) => rootStyle(ownerState),
       },
     },
   };
@@ -1188,7 +1170,7 @@ function Paper(_theme: Theme) {
       },
       styleOverrides: {
         root: {
-          backgroundImage: 'none',
+          backgroundImage: "none",
         },
       },
     },
@@ -1210,15 +1192,15 @@ function Popover(theme: Theme) {
 
 function Progress(theme: Theme) {
   const rootStyle = (ownerState: LinearProgressProps) => {
-    const bufferVariant = ownerState.variant === 'buffer';
+    const bufferVariant = ownerState.variant === "buffer";
 
     const defaultStyle = {
       borderRadius: 4,
-      '& .MuiLinearProgress-bar': {
+      "& .MuiLinearProgress-bar": {
         borderRadius: 4,
       },
       ...(bufferVariant && {
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
       }),
     };
 
@@ -1234,8 +1216,7 @@ function Progress(theme: Theme) {
   return {
     MuiLinearProgress: {
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: LinearProgressProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: LinearProgressProps }) => rootStyle(ownerState),
       },
     },
   };
@@ -1252,11 +1233,11 @@ function Radio(theme: Theme) {
       styleOverrides: {
         root: ({ ownerState }: { ownerState: RadioProps }) => ({
           padding: theme.spacing(1),
-          ...(ownerState.size === 'small' && {
-            '& svg': { width: 20, height: 20 },
+          ...(ownerState.size === "small" && {
+            "& svg": { width: 20, height: 20 },
           }),
-          ...(ownerState.size === 'medium' && {
-            '& svg': { width: 24, height: 24 },
+          ...(ownerState.size === "medium" && {
+            "& svg": { width: 24, height: 24 },
           }),
         }),
       },
@@ -1273,7 +1254,7 @@ function Rating(theme: Theme) {
       },
       styleOverrides: {
         root: {
-          '&.Mui-disabled': {
+          "&.Mui-disabled": {
             opacity: 0.48,
           },
         },
@@ -1281,13 +1262,13 @@ function Rating(theme: Theme) {
           color: alpha(theme.palette.grey[500], 0.48),
         },
         sizeSmall: {
-          '& svg': {
+          "& svg": {
             width: 20,
             height: 20,
           },
         },
         sizeLarge: {
-          '& svg': {
+          "& svg": {
             width: 28,
             height: 28,
           },
@@ -1311,7 +1292,7 @@ function Skeleton(theme: Theme) {
   return {
     MuiSkeleton: {
       defaultProps: {
-        animation: 'wave',
+        animation: "wave",
       },
       styleOverrides: {
         root: {
@@ -1323,16 +1304,16 @@ function Skeleton(theme: Theme) {
 }
 
 function Slider(theme: Theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette.mode === "light";
 
   return {
     MuiSlider: {
       defaultProps: {
-        size: 'small',
+        size: "small",
       },
       styleOverrides: {
         root: {
-          '&.Mui-disabled': {
+          "&.Mui-disabled": {
             color: theme.palette.action.disabled,
           },
         },
@@ -1371,7 +1352,7 @@ function SvgIcon(_theme: Theme) {
         fontSizeLarge: {
           width: 32,
           height: 32,
-          fontSize: 'inherit',
+          fontSize: "inherit",
         },
       },
     },
@@ -1379,48 +1360,48 @@ function SvgIcon(_theme: Theme) {
 }
 
 function Switch(theme: Theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette.mode === "light";
 
   const rootStyle = (ownerState: SwitchProps) => ({
-    padding: '9px 13px 9px 12px',
+    padding: "9px 13px 9px 12px",
     width: 58,
     height: 38,
-    ...(ownerState.size === 'small' && {
-      padding: '4px 8px 4px 7px',
+    ...(ownerState.size === "small" && {
+      padding: "4px 8px 4px 7px",
       width: 40,
       height: 24,
     }),
-    '& .MuiSwitch-thumb': {
+    "& .MuiSwitch-thumb": {
       width: 14,
       height: 14,
-      boxShadow: 'none',
+      boxShadow: "none",
       color: `${theme.palette.common.white} !important`,
-      ...(ownerState.size === 'small' && {
+      ...(ownerState.size === "small" && {
         width: 10,
         height: 10,
       }),
     },
-    '& .MuiSwitch-track': {
+    "& .MuiSwitch-track": {
       opacity: 1,
       borderRadius: 14,
       backgroundColor: alpha(theme.palette.grey[500], 0.48),
     },
-    '& .MuiSwitch-switchBase': {
+    "& .MuiSwitch-switchBase": {
       left: 3,
       padding: 12,
-      ...(ownerState.size === 'small' && {
+      ...(ownerState.size === "small" && {
         padding: 7,
       }),
-      '&.Mui-checked': {
-        transform: 'translateX(13px)',
-        '&+.MuiSwitch-track': { opacity: 1 },
-        ...(ownerState.size === 'small' && {
-          transform: 'translateX(9px)',
+      "&.Mui-checked": {
+        transform: "translateX(13px)",
+        "&+.MuiSwitch-track": { opacity: 1 },
+        ...(ownerState.size === "small" && {
+          transform: "translateX(9px)",
         }),
       },
-      '&.Mui-disabled': {
-        '& .MuiSwitch-thumb': { opacity: isLight ? 1 : 0.48 },
-        '&+.MuiSwitch-track': { opacity: 0.48 },
+      "&.Mui-disabled": {
+        "& .MuiSwitch-thumb": { opacity: isLight ? 1 : 0.48 },
+        "&+.MuiSwitch-track": { opacity: 0.48 },
       },
     },
   });
@@ -1428,8 +1409,7 @@ function Switch(theme: Theme) {
   return {
     MuiSwitch: {
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: SwitchProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: SwitchProps }) => rootStyle(ownerState),
       },
     },
   };
@@ -1440,16 +1420,16 @@ function Table(theme: Theme) {
     MuiTableContainer: {
       styleOverrides: {
         root: {
-          position: 'relative',
+          position: "relative",
         },
       },
     },
     MuiTableRow: {
       styleOverrides: {
         root: {
-          '&.Mui-selected': {
+          "&.Mui-selected": {
             backgroundColor: theme.palette.action.selected,
-            '&:hover': {
+            "&:hover": {
               backgroundColor: theme.palette.action.hover,
             },
           },
@@ -1459,7 +1439,7 @@ function Table(theme: Theme) {
     MuiTableCell: {
       styleOverrides: {
         root: {
-          borderBottom: 'none',
+          borderBottom: "none",
         },
         head: {
           color: theme.palette.text.secondary,
@@ -1477,16 +1457,16 @@ function Table(theme: Theme) {
     MuiTablePagination: {
       defaultProps: {
         backIconButtonProps: {
-          size: 'small',
+          size: "small",
         },
         nextIconButtonProps: {
-          size: 'small',
+          size: "small",
         },
         SelectProps: {
           MenuProps: {
             MenuListProps: {
               sx: {
-                '& .MuiMenuItem-root': {
+                "& .MuiMenuItem-root": {
                   ...theme.typography.body2,
                 },
               },
@@ -1506,7 +1486,7 @@ function Table(theme: Theme) {
           marginRight: theme.spacing(1),
         },
         select: {
-          '&:focus': {
+          "&:focus": {
             borderRadius: theme.shape.borderRadius,
           },
         },
@@ -1519,21 +1499,21 @@ function Tabs(theme: Theme) {
   return {
     MuiTabs: {
       defaultProps: {
-        textColor: 'inherit',
+        textColor: "inherit",
         allowScrollButtonsMobile: true,
-        variant: 'scrollable',
+        variant: "scrollable",
       },
       styleOverrides: {
         scrollButtons: {
           width: 48,
-          borderRadius: '50%',
+          borderRadius: "50%",
         },
       },
     },
     MuiTab: {
       defaultProps: {
         disableRipple: true,
-        iconPosition: 'start',
+        iconPosition: "start",
       },
       styleOverrides: {
         root: ({ ownerState }: { ownerState: TabProps }) => ({
@@ -1541,17 +1521,16 @@ function Tabs(theme: Theme) {
           opacity: 1,
           minWidth: 48,
           fontWeight: theme.typography.fontWeightMedium,
-          '&:not(:last-of-type)': {
+          "&:not(:last-of-type)": {
             marginRight: theme.spacing(3),
-            [theme.breakpoints.up('sm')]: {
+            [theme.breakpoints.up("sm")]: {
               marginRight: theme.spacing(5),
             },
           },
-          '&:not(.Mui-selected)': {
+          "&:not(.Mui-selected)": {
             color: theme.palette.text.secondary,
           },
-          ...((ownerState.iconPosition === 'start' ||
-            ownerState.iconPosition === 'end') && {
+          ...((ownerState.iconPosition === "start" || ownerState.iconPosition === "end") && {
             minHeight: 48,
           }),
         }),
@@ -1565,7 +1544,7 @@ function Timeline(theme: Theme) {
     MuiTimelineDot: {
       styleOverrides: {
         root: {
-          boxShadow: 'none',
+          boxShadow: "none",
         },
       },
     },
@@ -1582,33 +1561,30 @@ function Timeline(theme: Theme) {
 
 function ToggleButton(theme: Theme) {
   const rootStyle = (ownerState: ToggleButtonProps) => {
-    const standardColor = ownerState.color === 'standard';
+    const standardColor = ownerState.color === "standard";
     const defaultStyle = {
       ...(standardColor && {
-        '&.Mui-selected': {
-          borderColor: 'inherit',
+        "&.Mui-selected": {
+          borderColor: "inherit",
         },
       }),
     };
 
     const colorStyle = COLORS.map((color) => ({
       ...(ownerState.color === color && {
-        '&:hover': {
+        "&:hover": {
           borderColor: alpha(theme.palette[color].main, 0.48),
-          backgroundColor: alpha(
-            theme.palette[color].main,
-            theme.palette.action.hoverOpacity
-          ),
+          backgroundColor: alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
         },
-        '&.Mui-selected': {
+        "&.Mui-selected": {
           borderColor: theme.palette[color].main,
         },
       }),
     }));
 
     const disabledState = {
-      '&.Mui-disabled': {
-        '&.Mui-selected': {
+      "&.Mui-disabled": {
+        "&.Mui-selected": {
           color: theme.palette.action.disabled,
           backgroundColor: theme.palette.action.selected,
           borderColor: theme.palette.action.disabledBackground,
@@ -1622,8 +1598,7 @@ function ToggleButton(theme: Theme) {
   return {
     MuiToggleButton: {
       styleOverrides: {
-        root: ({ ownerState }: { ownerState: ToggleButtonProps }) =>
-          rootStyle(ownerState),
+        root: ({ ownerState }: { ownerState: ToggleButtonProps }) => rootStyle(ownerState),
       },
     },
     MuiToggleButtonGroup: {
@@ -1635,7 +1610,7 @@ function ToggleButton(theme: Theme) {
         },
         grouped: {
           margin: 4,
-          borderColor: 'transparent !important',
+          borderColor: "transparent !important",
           borderRadius: `${theme.shape.borderRadius}px !important`,
         },
       },
@@ -1644,7 +1619,7 @@ function ToggleButton(theme: Theme) {
 }
 
 function Tooltip(theme: Theme) {
-  const isLight = theme.palette.mode === 'light';
+  const isLight = theme.palette.mode === "light";
 
   return {
     MuiTooltip: {
@@ -1664,17 +1639,9 @@ function TreeView(theme: Theme) {
   return {
     MuiTreeView: {
       defaultProps: {
-        defaultCollapseIcon: (
-          <TreeViewCollapseIcon sx={{ width: 20, height: 20 }} />
-        ),
-        defaultExpandIcon: (
-          <TreeViewExpandIcon sx={{ width: 20, height: 20 }} />
-        ),
-        defaultEndIcon: (
-          <TreeViewEndIcon
-            sx={{ color: 'text.secondary', width: 20, height: 20 }}
-          />
-        ),
+        defaultCollapseIcon: <TreeViewCollapseIcon sx={{ width: 20, height: 20 }} />,
+        defaultExpandIcon: <TreeViewExpandIcon sx={{ width: 20, height: 20 }} />,
+        defaultEndIcon: <TreeViewEndIcon sx={{ color: "text.secondary", width: 20, height: 20 }} />,
       },
     },
     MuiTreeItem: {
@@ -1683,7 +1650,7 @@ function TreeView(theme: Theme) {
           ...theme.typography.body2,
         },
         iconContainer: {
-          width: 'auto',
+          width: "auto",
         },
       },
     },
@@ -1747,6 +1714,6 @@ export default function ComponentsOverrides(theme: Theme) {
     Autocomplete(theme),
     ControlLabel(theme),
     ToggleButton(theme),
-    LoadingButton(theme)
+    LoadingButton(theme),
   );
 }

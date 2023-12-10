@@ -1,5 +1,5 @@
-import ThemeColorPresets from './ThemeColorPresets';
-import ThemeContrast from './ThemeContrast';
+import ThemeColorPresets from "./ThemeColorPresets";
+import ThemeContrast from "./ThemeContrast";
 
 type Props = {
   children: React.ReactNode;

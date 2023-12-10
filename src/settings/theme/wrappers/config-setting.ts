@@ -1,10 +1,10 @@
-import { SettingsValueProps } from './types';
+import { SettingsValueProps } from "./types";
 
 export const defaultSettings: SettingsValueProps = {
-  themeMode: 'light',
-  themeDirection: 'ltr',
-  themeContrast: 'default',
-  themeLayout: 'vertical',
-  themeColorPresets: 'blue',
+  themeMode: "light",
+  themeDirection: "ltr",
+  themeContrast: "default",
+  themeLayout: "vertical",
+  themeColorPresets: "blue",
   themeStretch: false,
 };

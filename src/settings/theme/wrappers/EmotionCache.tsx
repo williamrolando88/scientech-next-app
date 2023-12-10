@@ -1,8 +1,5 @@
 "use client";
-import type {
-  EmotionCache,
-  Options as OptionsOfCreateCache,
-} from "@emotion/cache";
+import type { EmotionCache, Options as OptionsOfCreateCache } from "@emotion/cache";
 import createCache from "@emotion/cache";
 import { CacheProvider as DefaultCacheProvider } from "@emotion/react";
 import { useServerInsertedHTML } from "next/navigation";
@@ -20,9 +17,7 @@ export type NextAppDirEmotionCacheProviderProps = {
 };
 
 // Adapted from https://github.com/garronej/tss-react/blob/main/src/next/appDir.tsx
-export default function NextAppDirEmotionCacheProvider(
-  props: NextAppDirEmotionCacheProviderProps
-) {
+export default function NextAppDirEmotionCacheProvider(props: NextAppDirEmotionCacheProviderProps) {
   const { options, CacheProvider = DefaultCacheProvider, children } = props;
 
   const [registry] = React.useState(() => {
