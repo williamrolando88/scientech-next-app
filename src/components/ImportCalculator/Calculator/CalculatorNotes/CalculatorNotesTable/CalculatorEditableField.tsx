@@ -1,6 +1,6 @@
 "use client";
 import Iconify from "@/components/shared/Iconify";
-import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { Button, Stack, TextField } from "@mui/material";
 import { FC, useRef, useState } from "react";
 
@@ -9,7 +9,7 @@ interface CalculatorEditableFieldProps {
 }
 
 export const CalculatorEditableField: FC<CalculatorEditableFieldProps> = ({ index }) => {
-  const { values, setFieldValue, deleteNote } = useCalculatorContext();
+  const { values, setFieldValue, deleteNote } = useImportCalculatorContext();
   const storedValue = values.notes[index];
   const [disabled, setDisabled] = useState(true);
   const [currentValue, setCurrentValue] = useState(storedValue);

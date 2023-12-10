@@ -1,12 +1,12 @@
 "use client";
-import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { Stack } from "@mui/material";
 import { FC } from "react";
 import CalculatorLotHeader from "./CalculatorLotHeader";
 import { LotItemRow } from "./LotItemRow";
 
 export const LotTables: FC = () => {
-  const { values, errors, touched, setFieldValue } = useCalculatorContext();
+  const { values, errors, touched, setFieldValue } = useImportCalculatorContext();
 
   return (
     <Stack direction="row" gap={1} justifyContent="space-around" flexWrap="wrap">

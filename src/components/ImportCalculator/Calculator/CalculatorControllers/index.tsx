@@ -1,12 +1,12 @@
 "use client";
 import Iconify from "@/components/shared/Iconify";
-import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { Box, Button, Card, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 import CalculatorSaveConfirmation from "./CalculatorSaveRemote";
 
 const CalculatorControllers: FC = () => {
-  const { resetForm } = useCalculatorContext();
+  const { resetForm } = useImportCalculatorContext();
 
   return (
     <Stack

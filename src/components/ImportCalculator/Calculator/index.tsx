@@ -1,4 +1,4 @@
-import { CalculatorProvider } from "@/hooks/useCalculatorContext";
+import { ImportCalculatorProvider } from "@/hooks/useCalculatorContext";
 import { Container, Stack } from "@mui/material";
 import { FC } from "react";
 import CalculatorControllers from "./CalculatorControllers";
@@ -9,14 +9,14 @@ import CalculatorSettings from "./CalculatorSettings";
 const ImportCalculator: FC = () => {
   return (
     <Container maxWidth="xl">
-      <CalculatorProvider>
+      <ImportCalculatorProvider>
         <Stack gap={3} py={4}>
           <CalculatorControllers />
           <CalculatorItems />
           <CalculatorSettings />
           <CalculatorNotes />
         </Stack>
-      </CalculatorProvider>
+      </ImportCalculatorProvider>
     </Container>
   );
 };

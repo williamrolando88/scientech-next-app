@@ -1,9 +1,13 @@
+"use client";
 import Iconify from "@/components/shared/Iconify";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { Button, Card, Stack, Typography } from "@mui/material";
 import { FC } from "react";
 import CalculatorItemsTable from "./CalculatorItemsTable";
 
 const CalculatorItems: FC = () => {
+  const { submitForm } = useImportCalculatorContext();
+
   return (
     <Stack component={Card} p={2} elevation={0} variant="outlined" gap={2}>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
@@ -16,7 +20,7 @@ const CalculatorItems: FC = () => {
           color="success"
           variant="contained"
           sx={{ color: "white" }}
-          type="submit"
+          onClick={submitForm}
         >
           Calcular
         </Button>

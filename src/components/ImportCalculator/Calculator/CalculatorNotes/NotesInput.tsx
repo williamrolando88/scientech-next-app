@@ -1,10 +1,10 @@
 "use client";
-import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { TextField } from "@mui/material";
 import { useRef } from "react";
 
 export const NotesInput = () => {
-  const { addNote } = useCalculatorContext();
+  const { addNote } = useImportCalculatorContext();
   const inputRef = useRef<HTMLInputElement>();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {

@@ -24,6 +24,7 @@ interface Context {
     field: string,
     value: string | number
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
+  submitForm: VoidFunction;
 }
 
 const CalculatorContext = createContext<Context>({} as Context);
@@ -33,7 +34,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const CalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
+export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
   const handleFormSubmit = (formValues: ImportCalculator) => {
     const { pricesArray } = calculateImportation(formValues);
     setValues((prevValue) => ({
@@ -52,6 +53,7 @@ export const CalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
     handleReset,
     handleSubmit,
     setFieldValue,
+    submitForm,
   } = useFormik<ImportCalculator>({
     initialValues: IMPORT_CALCULATOR_INITIAL_VALUE,
     onSubmit: handleFormSubmit,
@@ -96,7 +98,7 @@ export const CalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
     }
   }, [fetchedValues, setValues]);
 
-  const contextValue = {
+  const contextValue: Context = {
     values,
     errors,
     touched,
@@ -107,6 +109,7 @@ export const CalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
     addNote,
     deleteNote,
     setFieldValue,
+    submitForm,
   };
   return (
     <CalculatorContext.Provider value={contextValue}>
@@ -117,4 +120,4 @@ export const CalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
   );
 };
 
-export const useCalculatorContext = () => useContext(CalculatorContext);
+export const useImportCalculatorContext = () => useContext(CalculatorContext);

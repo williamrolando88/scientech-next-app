@@ -1,11 +1,11 @@
 import Iconify from "@/components/shared/Iconify";
-import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { Button, Stack } from "@mui/material";
 import { FC } from "react";
 import { TableHeaderComponent } from "./TableHeaderComponent";
 
 const CalculatorItemsTableHeader: FC = () => {
-  const { addRow } = useCalculatorContext();
+  const { addRow } = useImportCalculatorContext();
 
   return (
     <Stack direction="row" gap={1} alignItems="stretch">

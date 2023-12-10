@@ -1,5 +1,5 @@
 import Iconify from "@/components/shared/Iconify";
-import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { LoadingButton } from "@mui/lab";
 import {
   Button,
@@ -13,7 +13,7 @@ import { FC, useState } from "react";
 import CollapsibleAlert from "../../../shared/CollapsibleAlert";
 
 const CalculatorSaveConfirmation: FC = () => {
-  const { values, handleChange } = useCalculatorContext();
+  const { values, handleChange } = useImportCalculatorContext();
   const [modalOpen, setModalOpen] = useState(false);
   const [alertText, setAlertText] = useState("");
 

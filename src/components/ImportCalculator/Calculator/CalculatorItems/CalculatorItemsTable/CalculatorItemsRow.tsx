@@ -1,6 +1,6 @@
 import { AutoCalculateInput } from "@/components/shared/AutoCalculateInput";
 import Iconify from "@/components/shared/Iconify";
-import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { ImportCalculatorItems } from "@/types/importCalculator";
 import { Button, InputAdornment, Stack, TextField } from "@mui/material";
 import { FC } from "react";
@@ -11,7 +11,7 @@ interface Props extends Partial<ImportCalculatorItems> {
 }
 
 const CalculatorItemsRow: FC<Props> = ({ index, onDelete }) => {
-  const { values, errors, touched, handleChange, setFieldValue } = useCalculatorContext();
+  const { values, errors, touched, handleChange, setFieldValue } = useImportCalculatorContext();
 
   const getError = (fieldName: keyof Partial<ImportCalculatorItems>) => {
     if (

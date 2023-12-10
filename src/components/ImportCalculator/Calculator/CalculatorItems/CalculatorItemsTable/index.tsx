@@ -1,12 +1,12 @@
 "use client";
-import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { Stack } from "@mui/material";
 import { FC } from "react";
 import CalculatorItemsRow from "./CalculatorItemsRow";
 import CalculatorItemsTableHeader from "./CalculatorItemsTableHeader";
 
 const CalculatorItemsTable: FC = () => {
-  const { values, deleteRow } = useCalculatorContext();
+  const { values, deleteRow } = useImportCalculatorContext();
 
   return (
     <Stack gap={1}>
