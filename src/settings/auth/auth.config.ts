@@ -9,7 +9,7 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnDashboard = nextUrl.pathname.startsWith(ROUTES.private.home);
+      const isOnDashboard = nextUrl.pathname.startsWith(ROUTES.private.root);
 
       const isOnLogin = nextUrl.pathname.startsWith(ROUTES.public.login);
 

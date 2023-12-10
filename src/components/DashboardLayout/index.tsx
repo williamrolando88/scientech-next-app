@@ -1,3 +1,4 @@
+import { logOut } from "@/lib/actions/auth";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import HomeIcon from "@mui/icons-material/Home";
@@ -23,9 +24,9 @@ import { FC, ReactNode } from "react";
 export const DRAWER_WIDTH = 240;
 
 export const LINKS = [
-  { text: "Home", href: "/", icon: HomeIcon },
-  { text: "Starred", href: "/starred", icon: StarIcon },
-  { text: "Tasks", href: "/tasks", icon: ChecklistIcon },
+  { text: "Home", href: "/dashboard/home", icon: HomeIcon },
+  { text: "Starred", href: "/dashboard/starred", icon: StarIcon },
+  { text: "Tasks", href: "/dashboard/tasks", icon: ChecklistIcon },
 ];
 
 export const PLACEHOLDER_LINKS = [
@@ -94,14 +95,18 @@ export const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
             </ListItem>
           ))}
 
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <LogoutIcon />
-              </ListItemIcon>
-              <ListItemText primary="Logout" />
-            </ListItemButton>
-          </ListItem>
+          <form action={logOut}>
+            <ListItem disablePadding>
+              <button type="submit">
+                <ListItemButton>
+                  <ListItemIcon>
+                    <LogoutIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Logout" />
+                </ListItemButton>
+              </button>
+            </ListItem>
+          </form>
         </List>
       </Drawer>
 

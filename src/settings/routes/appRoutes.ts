@@ -13,7 +13,8 @@ export const ROUTES = {
     privacyPolicy: "/politica-de-privacidad",
   },
   private: {
-    home: pathCreator(DASHBOARD, "/"),
+    root: DASHBOARD,
+    home: pathCreator(DASHBOARD, "/home"),
     xmlParser: pathCreator(DASHBOARD, "/xml-parser"),
     calculator: {
       index: pathCreator(DASHBOARD, CALCULATOR),
