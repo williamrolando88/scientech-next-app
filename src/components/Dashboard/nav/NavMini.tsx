@@ -1,9 +1,10 @@
+import ScientechIcon from "@/components/shared/ScientechIcon";
+import { NavSectionMini } from "@/components/shared/nav-section";
+import { hideScrollbarX } from "@/lib/helpers/cssStyles";
+import navConfig from "@/settings/routes/dashboardNavigation";
+import { NAV } from "@/settings/theme/config-global";
 import { Box, Stack } from "@mui/material";
 import NavToggleButton from "./NavToggleButton";
-import { NAV } from "@/settings/theme/config-global";
-import { hideScrollbarX } from "@/lib/helpers/cssStyles";
-import { NavSectionMini } from "@/components/shared/nav-section";
-import navConfig from "@/settings/routes/dashboardNavigation";
 export default function NavMini() {
   return (
     <Box
@@ -22,6 +23,8 @@ export default function NavMini() {
 
       <Stack
         sx={{
+          pt: 3,
+          px: 2.5,
           pb: 2,
           height: 1,
           position: "fixed",
@@ -30,7 +33,9 @@ export default function NavMini() {
           ...hideScrollbarX,
         }}
       >
-        Logo
+        <ScientechIcon />
+
+        <Box sx={{ height: 40 }} />
         <NavSectionMini data={navConfig} />
       </Stack>
     </Box>
