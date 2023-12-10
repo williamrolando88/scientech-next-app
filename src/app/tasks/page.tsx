@@ -23,7 +23,9 @@ export default function TasksPage() {
           Tasks Page
         </Typography>
 
-        <Button onClick={() => setModalOpen(true)}>Open modal</Button>
+        <Button variant="soft" onClick={() => setModalOpen(true)}>
+          Open modal
+        </Button>
       </Box>
       <TestModal onClose={setModalOpen} open={modalOpen} />
     </Container>
