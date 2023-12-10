@@ -97,7 +97,18 @@ export const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
 
           <form action={logOut}>
             <ListItem disablePadding>
-              <button type="submit">
+              <button
+                style={{
+                  background: "none",
+                  color: "inherit",
+                  border: "none",
+                  padding: 1,
+                  font: "inherit",
+                  outline: "inherit",
+                  width: "100%",
+                }}
+                type="submit"
+              >
                 <ListItemButton>
                   <ListItemIcon>
                     <LogoutIcon />
