@@ -4,11 +4,20 @@ import {
   IMPORT_CALCULATOR_INITIAL_VALUE,
   IMPORT_CALCULATOR_NEW_ROW,
 } from "@/lib/constants/importCalculator";
-import { calculateImportation } from "@/lib/modules/calculator";
+import { calculateImportation, getImportReport } from "@/lib/modules/calculator";
 import { ImportCalculatorValidationSchema } from "@/lib/parsers/importCalculator";
 import { ImportCalculator } from "@/types/importCalculator";
 import { FormikErrors, FormikTouched, useFormik } from "formik";
-import { FC, ReactNode, createContext, useCallback, useContext, useEffect, useMemo } from "react";
+import {
+  FC,
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
 interface Context {
@@ -26,6 +35,7 @@ interface Context {
     value: string | number
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
   calculate: VoidFunction;
+  reportValues: ApexAxisChartSeries;
 }
 
 const CalculatorContext = createContext<Context>({} as Context);
@@ -36,6 +46,8 @@ interface Props {
 }
 
 export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
+  const [reportValues, setReportValues] = useState<ApexAxisChartSeries>([]);
+
   const { values, errors, touched, handleChange, resetForm, setValues, setFieldValue } =
     useFormik<ImportCalculator>({
       initialValues: IMPORT_CALCULATOR_INITIAL_VALUE,
@@ -81,7 +93,9 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
   );
 
   const calculate = useCallback(() => {
-    const { pricesArray } = calculateImportation(values);
+    const { pricesArray, articlesReport } = calculateImportation(values);
+
+    setReportValues(getImportReport(articlesReport));
 
     setValues((prevValue) => ({
       ...prevValue,
@@ -112,6 +126,7 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
       deleteNote,
       setFieldValue,
       calculate,
+      reportValues,
     }),
     [
       addNote,
@@ -125,6 +140,7 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
       setFieldValue,
       touched,
       values,
+      reportValues,
     ]
   );
   return (

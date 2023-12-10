@@ -6,7 +6,7 @@ import { FC } from "react";
 import CalculatorItemsTable from "./CalculatorItemsTable";
 
 const CalculatorItems: FC = () => {
-  const { calculate } = useImportCalculatorContext();
+  const { calculate, values } = useImportCalculatorContext();
 
   return (
     <Stack component={Card} p={2} elevation={0} variant="outlined" gap={2}>
@@ -21,6 +21,7 @@ const CalculatorItems: FC = () => {
           variant="contained"
           sx={{ color: "white" }}
           onClick={calculate}
+          disabled={!values.items.length}
         >
           Calcular
         </Button>
