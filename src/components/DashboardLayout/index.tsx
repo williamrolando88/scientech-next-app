@@ -1,4 +1,10 @@
+import ChecklistIcon from "@mui/icons-material/Checklist";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import HomeIcon from "@mui/icons-material/Home";
+import LogoutIcon from "@mui/icons-material/Logout";
+import SettingsIcon from "@mui/icons-material/Settings";
+import StarIcon from "@mui/icons-material/Star";
+import SupportIcon from "@mui/icons-material/Support";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -10,9 +16,23 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+
 import Link from "next/link";
 import { FC, ReactNode } from "react";
-import { DRAWER_WIDTH, LINKS, PLACEHOLDER_LINKS } from "../../app/layout";
+
+export const DRAWER_WIDTH = 240;
+
+export const LINKS = [
+  { text: "Home", href: "/", icon: HomeIcon },
+  { text: "Starred", href: "/starred", icon: StarIcon },
+  { text: "Tasks", href: "/tasks", icon: ChecklistIcon },
+];
+
+export const PLACEHOLDER_LINKS = [
+  { text: "Settings", icon: SettingsIcon },
+  { text: "Support", icon: SupportIcon },
+  // { text: "Logout", icon: LogoutIcon },
+];
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -73,6 +93,15 @@ export const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
               </ListItemButton>
             </ListItem>
           ))}
+
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
 
