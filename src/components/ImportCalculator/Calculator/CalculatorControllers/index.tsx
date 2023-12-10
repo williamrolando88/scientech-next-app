@@ -3,10 +3,9 @@ import Iconify from "@/components/shared/Iconify";
 import { useImportCalculatorContext } from "@/hooks/useCalculatorContext";
 import { Box, Button, Card, Stack, Typography } from "@mui/material";
 import { FC } from "react";
-import CalculatorSaveConfirmation from "./CalculatorSaveRemote";
 
 const CalculatorControllers: FC = () => {
-  const { resetForm } = useImportCalculatorContext();
+  const { resetForm, values } = useImportCalculatorContext();
 
   return (
     <Stack
@@ -33,9 +32,16 @@ const CalculatorControllers: FC = () => {
           Nuevo
         </Button>
 
-        <Button type="submit">Guardar</Button>
-
-        <CalculatorSaveConfirmation />
+        <Button
+          startIcon={<Iconify icon="pajamas:upload" />}
+          variant="contained"
+          color="secondary"
+          sx={{ color: "white" }}
+          type="submit"
+          disabled={!values.items.length}
+        >
+          Guardar
+        </Button>
       </Box>
     </Stack>
   );
