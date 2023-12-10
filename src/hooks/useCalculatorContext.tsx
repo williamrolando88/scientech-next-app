@@ -36,6 +36,7 @@ interface Context {
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
   calculate: VoidFunction;
   reportValues: ApexAxisChartSeries;
+  totalCost: number;
 }
 
 const CalculatorContext = createContext<Context>({} as Context);
@@ -47,6 +48,7 @@ interface Props {
 
 export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
   const [reportValues, setReportValues] = useState<ApexAxisChartSeries>([]);
+  const [totalCost, setTotalCost] = useState(0);
 
   const { values, errors, touched, handleChange, resetForm, setValues, setFieldValue } =
     useFormik<ImportCalculator>({
@@ -95,6 +97,7 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
   const calculate = useCallback(() => {
     const { pricesArray, articlesReport } = calculateImportation(values);
 
+    setTotalCost(articlesReport.reduce((acc, item) => acc + item.FOB, 0));
     setReportValues(getImportReport(articlesReport));
 
     setValues((prevValue) => ({
@@ -127,6 +130,7 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
       setFieldValue,
       calculate,
       reportValues,
+      totalCost,
     }),
     [
       addNote,
@@ -141,6 +145,7 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
       touched,
       values,
       reportValues,
+      totalCost,
     ]
   );
   return (

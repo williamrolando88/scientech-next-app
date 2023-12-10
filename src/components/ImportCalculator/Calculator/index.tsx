@@ -4,6 +4,7 @@ import { FC } from "react";
 import CalculatorControllers from "./CalculatorControllers";
 import CalculatorItems from "./CalculatorItems";
 import CalculatorNotes from "./CalculatorNotes";
+import { CalculatorReport } from "./CalculatorReport";
 import CalculatorSettings from "./CalculatorSettings";
 
 const ImportCalculator: FC = () => {
@@ -15,6 +16,7 @@ const ImportCalculator: FC = () => {
           <CalculatorItems />
           <CalculatorSettings />
           <CalculatorNotes />
+          <CalculatorReport />
         </Stack>
       </ImportCalculatorProvider>
     </Container>
