@@ -2,10 +2,10 @@
 import { IconButtonAnimate } from "@/components/shared/animate";
 import { CustomAvatar } from "@/components/shared/custom-avatar";
 import MenuPopover from "@/components/shared/menu-popover";
+import { logOut } from "@/lib/actions/auth";
 import { Box, Divider, MenuItem, Stack, Typography } from "@mui/material";
 import { alpha } from "@mui/material/styles";
 import { useRouter } from "next/navigation";
-import { useSnackbar } from "notistack";
 import { useState } from "react";
 
 const OPTIONS = [
@@ -25,7 +25,6 @@ const OPTIONS = [
 
 export default function AccountPopover() {
   const { push } = useRouter();
-  const { enqueueSnackbar } = useSnackbar();
   const [openPopover, setOpenPopover] = useState<HTMLElement | null>(null);
 
   const handleOpenPopover = (event: React.MouseEvent<HTMLElement>) => {
@@ -34,16 +33,6 @@ export default function AccountPopover() {
 
   const handleClosePopover = () => {
     setOpenPopover(null);
-  };
-
-  const handleLogout = async () => {
-    try {
-      alert("Implement logout");
-      handleClosePopover();
-    } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Unable to logout!", { variant: "error" });
-    }
   };
 
   const handleClickItem = (path: string) => {
@@ -96,9 +85,22 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: "dashed" }} />
 
-        <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
-          Logout
-        </MenuItem>
+        <form action={logOut}>
+          <button
+            type="submit"
+            style={{
+              background: "none",
+              color: "inherit",
+              border: "none",
+              padding: 0,
+              font: "inherit",
+              outline: "inherit",
+              width: "100%",
+            }}
+          >
+            <MenuItem sx={{ m: 1 }}>Logout</MenuItem>
+          </button>
+        </form>
       </MenuPopover>
     </>
   );
