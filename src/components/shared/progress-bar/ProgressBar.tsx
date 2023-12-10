@@ -1,0 +1,39 @@
+import { useRouter } from "next/router";
+import NProgress from "nprogress";
+import { memo } from "react";
+import { useEffectOnce } from "usehooks-ts";
+import StyledProgressBar from "./styles";
+
+function ProgressBar() {
+  const router = useRouter();
+
+  NProgress.configure({ showSpinner: false });
+
+  useEffectOnce(() => {
+    let timeout: NodeJS.Timeout;
+
+    const handleStart = () => {
+      timeout = setTimeout(() => NProgress.start(), 300);
+    };
+
+    const handleStop = () => {
+      NProgress.done();
+      clearTimeout(timeout);
+    };
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleStop);
+    router.events.on("routeChangeError", handleStop);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleStop);
+      router.events.off("routeChangeError", handleStop);
+      clearTimeout(timeout);
+    };
+  });
+
+  return <StyledProgressBar />;
+}
+
+export default memo(ProgressBar);
