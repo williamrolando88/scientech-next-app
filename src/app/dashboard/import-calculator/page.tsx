@@ -6,7 +6,7 @@ function page() {
   return (
     <main>
       List of calculations
-      <Link href={ROUTES.private.calculator.index}>
+      <Link href={ROUTES.private.calculator.new}>
         <Button>Nuevo</Button>
       </Link>
     </main>
