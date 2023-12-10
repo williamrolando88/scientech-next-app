@@ -1,34 +1,24 @@
-import { Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { forwardRef } from 'react';
-import { StyledLabel } from './styles';
-import { LabelProps } from './types';
+"use client";
+import { Box } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { forwardRef } from "react";
+import { StyledLabel } from "./styles";
+import { LabelProps } from "./types";
 
 const Label = forwardRef<HTMLSpanElement, LabelProps>(
-  (
-    {
-      children,
-      color = 'default',
-      variant = 'soft',
-      startIcon,
-      endIcon,
-      sx,
-      ...other
-    },
-    ref
-  ) => {
+  ({ children, color = "default", variant = "soft", startIcon, endIcon, sx, ...other }, ref) => {
     const theme = useTheme();
 
     const iconStyle = {
       width: 16,
       height: 16,
-      '& svg, img': { width: 1, height: 1, objectFit: 'cover' },
+      "& svg, img": { width: 1, height: 1, objectFit: "cover" },
     };
 
     return (
       <StyledLabel
         ref={ref}
-        component='span'
+        component="span"
         ownerState={{ color, variant }}
         sx={{
           ...(startIcon && { pl: 0.75 }),
