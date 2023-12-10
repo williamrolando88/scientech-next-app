@@ -7,7 +7,7 @@ import { calculateImportation } from "@/lib/modules/calculator";
 import { ImportCalculatorValidationSchema } from "@/lib/parsers/importCalculator";
 import { ImportCalculator } from "@/types/importCalculator";
 import { FormikErrors, FormikTouched, useFormik } from "formik";
-import { FC, ReactNode, createContext, useContext, useEffect } from "react";
+import { FC, ReactNode, createContext, useCallback, useContext, useEffect, useMemo } from "react";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
 interface Context {
@@ -25,6 +25,7 @@ interface Context {
     value: string | number
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
   submitForm: VoidFunction;
+  calculate: VoidFunction;
 }
 
 const CalculatorContext = createContext<Context>({} as Context);
@@ -35,14 +36,6 @@ interface Props {
 }
 
 export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
-  const handleFormSubmit = (formValues: ImportCalculator) => {
-    const { pricesArray } = calculateImportation(formValues);
-    setValues((prevValue) => ({
-      ...prevValue,
-      items: prevValue.items.map((item, index) => ({ ...item, price: pricesArray[index] })),
-    }));
-  };
-
   const {
     values,
     errors,
@@ -56,41 +49,59 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
     submitForm,
   } = useFormik<ImportCalculator>({
     initialValues: IMPORT_CALCULATOR_INITIAL_VALUE,
-    onSubmit: handleFormSubmit,
+    onSubmit: () => {},
     validationSchema: toFormikValidationSchema(ImportCalculatorValidationSchema),
   });
 
-  const addRow = () => {
+  const addRow = useCallback(() => {
     setValues((prevState) => ({
       ...prevState,
       items: [...prevState.items, IMPORT_CALCULATOR_NEW_ROW],
     }));
-  };
+  }, [setValues]);
 
-  const deleteRow = (id: number) => {
-    setValues((prevState) => ({
-      ...prevState,
-      items: prevState.items.filter((_, index) => index !== id),
+  const deleteRow = useCallback(
+    (id: number) => {
+      setValues((prevState) => ({
+        ...prevState,
+        items: prevState.items.filter((_, index) => index !== id),
+      }));
+    },
+    [setValues]
+  );
+
+  const addNote = useCallback(
+    (body: string) => {
+      setValues((prevState) => ({
+        ...prevState,
+        notes: [...prevState.notes, body],
+      }));
+    },
+    [setValues]
+  );
+
+  const deleteNote = useCallback(
+    (id: number) => {
+      setValues((prevState) => ({
+        ...prevState,
+        notes: prevState.notes.filter((_, index) => index !== id),
+      }));
+    },
+    [setValues]
+  );
+
+  const calculate = useCallback(() => {
+    const { pricesArray } = calculateImportation(values);
+
+    setValues((prevValue) => ({
+      ...prevValue,
+      items: prevValue.items.map((item, index) => ({ ...item, unitPrice: pricesArray[index] })),
     }));
-  };
+  }, [setValues, values]);
 
-  const addNote = (body: string) => {
-    setValues((prevState) => ({
-      ...prevState,
-      notes: [...prevState.notes, body],
-    }));
-  };
-
-  const deleteNote = (id: number) => {
-    setValues((prevState) => ({
-      ...prevState,
-      notes: prevState.notes.filter((_, index) => index !== id),
-    }));
-  };
-
-  const resetCalculator = () => {
+  const resetCalculator = useCallback(() => {
     resetForm({ values: IMPORT_CALCULATOR_INITIAL_VALUE });
-  };
+  }, [resetForm]);
 
   useEffect(() => {
     if (fetchedValues) {
@@ -98,19 +109,36 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
     }
   }, [fetchedValues, setValues]);
 
-  const contextValue: Context = {
-    values,
-    errors,
-    touched,
-    handleChange,
-    resetForm: resetCalculator,
-    addRow,
-    deleteRow,
-    addNote,
-    deleteNote,
-    setFieldValue,
-    submitForm,
-  };
+  const contextValue: Context = useMemo(
+    () => ({
+      values,
+      errors,
+      touched,
+      handleChange,
+      resetForm: resetCalculator,
+      addRow,
+      deleteRow,
+      addNote,
+      deleteNote,
+      setFieldValue,
+      submitForm,
+      calculate,
+    }),
+    [
+      addNote,
+      addRow,
+      calculate,
+      deleteNote,
+      deleteRow,
+      errors,
+      handleChange,
+      resetCalculator,
+      setFieldValue,
+      submitForm,
+      touched,
+      values,
+    ]
+  );
   return (
     <CalculatorContext.Provider value={contextValue}>
       <form onReset={handleReset} onSubmit={handleSubmit}>
