@@ -1,4 +1,5 @@
 "use client";
+import { storeImportCalculation } from "@/lib/actions/importCalculator";
 import {
   IMPORT_CALCULATOR_INITIAL_VALUE,
   IMPORT_CALCULATOR_NEW_ROW,
@@ -24,7 +25,6 @@ interface Context {
     field: string,
     value: string | number
   ) => Promise<void> | Promise<FormikErrors<ImportCalculator>>;
-  submitForm: VoidFunction;
   calculate: VoidFunction;
 }
 
@@ -36,22 +36,12 @@ interface Props {
 }
 
 export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
-  const {
-    values,
-    errors,
-    touched,
-    handleChange,
-    resetForm,
-    setValues,
-    handleReset,
-    handleSubmit,
-    setFieldValue,
-    submitForm,
-  } = useFormik<ImportCalculator>({
-    initialValues: IMPORT_CALCULATOR_INITIAL_VALUE,
-    onSubmit: () => {},
-    validationSchema: toFormikValidationSchema(ImportCalculatorValidationSchema),
-  });
+  const { values, errors, touched, handleChange, resetForm, setValues, setFieldValue } =
+    useFormik<ImportCalculator>({
+      initialValues: IMPORT_CALCULATOR_INITIAL_VALUE,
+      onSubmit: () => {},
+      validationSchema: toFormikValidationSchema(ImportCalculatorValidationSchema),
+    });
 
   const addRow = useCallback(() => {
     setValues((prevState) => ({
@@ -121,7 +111,6 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
       addNote,
       deleteNote,
       setFieldValue,
-      submitForm,
       calculate,
     }),
     [
@@ -134,16 +123,13 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
       handleChange,
       resetCalculator,
       setFieldValue,
-      submitForm,
       touched,
       values,
     ]
   );
   return (
     <CalculatorContext.Provider value={contextValue}>
-      <form onReset={handleReset} onSubmit={handleSubmit}>
-        {children}
-      </form>
+      <form action={storeImportCalculation}>{children}</form>
     </CalculatorContext.Provider>
   );
 };

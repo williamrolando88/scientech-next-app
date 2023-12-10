@@ -33,6 +33,8 @@ const CalculatorControllers: FC = () => {
           Nuevo
         </Button>
 
+        <Button type="submit">Guardar</Button>
+
         <CalculatorSaveConfirmation />
       </Box>
     </Stack>

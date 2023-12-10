@@ -58,11 +58,7 @@ const CalculatorSaveConfirmation: FC = () => {
         <DialogActions>
           <Button onClick={closeModal}>Cancelar</Button>
 
-          <LoadingButton
-            variant="contained"
-            onClick={() => alert("Not implemented")}
-            color="primary"
-          >
+          <LoadingButton variant="contained" color="primary" type="submit">
             Guardar
           </LoadingButton>
         </DialogActions>
