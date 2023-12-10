@@ -6,10 +6,9 @@ const navConfig: NavData[] = [
   {
     subheader: "general",
     items: [
-      { title: "Inicio", path: ROUTES.private.home, icon: ICONS.dashboard },
+      { title: "Resumen", path: ROUTES.private.home, icon: ICONS.dashboard },
       {
-        title: "Calculadora",
-        caption: "de importaciones",
+        title: "Calcular Importación",
         path: ROUTES.private.calculator.index,
         icon: ICONS.file,
       },
