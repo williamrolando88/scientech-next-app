@@ -1,6 +1,7 @@
 import Iconify from "@/components/shared/Iconify";
 import { Button, Card, Stack, Typography } from "@mui/material";
 import { FC } from "react";
+import CalculatorItemsTable from "./CalculatorItemsTable";
 
 const CalculatorItems: FC = () => {
   return (
@@ -21,7 +22,7 @@ const CalculatorItems: FC = () => {
         </Button>
       </Stack>
 
-      {/* <CalculatorItemsTable /> */}
+      <CalculatorItemsTable />
     </Stack>
   );
 };

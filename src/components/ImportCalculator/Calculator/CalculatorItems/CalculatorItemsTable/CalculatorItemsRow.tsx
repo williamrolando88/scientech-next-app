@@ -1,11 +1,11 @@
+import { AutoCalculateInput } from "@/components/shared/AutoCalculateInput";
+import Iconify from "@/components/shared/Iconify";
+import { useCalculatorContext } from "@/hooks/useCalculatorContext";
+import { ImportCalculatorItems } from "@/types/importCalculator";
 import { Button, InputAdornment, Stack, TextField } from "@mui/material";
 import { FC } from "react";
-import Iconify from "../../../../components/RootComponents/Iconify";
-import { QuotedItem } from "../../../../graphql/callers";
-import { useCalculatorContext } from "../../../../hooks/useCalculatorContext";
-import { AutoCalculateInput } from "../../../../shared/AutoCalculateInput";
 
-interface Props extends Partial<QuotedItem> {
+interface Props extends Partial<ImportCalculatorItems> {
   index: number;
   onDelete: VoidFunction;
 }
@@ -13,7 +13,7 @@ interface Props extends Partial<QuotedItem> {
 const CalculatorItemsRow: FC<Props> = ({ index, onDelete }) => {
   const { values, errors, touched, handleChange, setFieldValue } = useCalculatorContext();
 
-  const getError = (fieldName: keyof Partial<QuotedItem>) => {
+  const getError = (fieldName: keyof Partial<ImportCalculatorItems>) => {
     if (
       !errors.items?.length ||
       !touched.items?.length ||
@@ -22,7 +22,7 @@ const CalculatorItemsRow: FC<Props> = ({ index, onDelete }) => {
     )
       return false;
 
-    // @ts-expect-error - QuotedItem is a superset of the errors keys
+    // @ts-expect-error - ImportCalculatorItems is a superset of the errors keys
     return touched.items[index][fieldName] && !!errors.items[index][fieldName];
   };
 
@@ -88,9 +88,9 @@ const CalculatorItemsRow: FC<Props> = ({ index, onDelete }) => {
         onChange={setFieldValue}
         onFocus={(e) => e.target.select()}
         inputProps={{ min: 0, step: 0.01 }}
-        value={values.items[index].tariff}
-        name={`items[${index}].tariff`}
-        error={getError("tariff")}
+        value={values.items[index].tariffRate}
+        name={`items[${index}].tariffRate`}
+        error={getError("tariffRate")}
         InputProps={{
           endAdornment: <InputAdornment position="end">%</InputAdornment>,
         }}
