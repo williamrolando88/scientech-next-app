@@ -8,6 +8,7 @@ import { calculateImportation, getImportReport } from "@/lib/modules/calculator"
 import { ImportCalculatorValidationSchema } from "@/lib/parsers/importCalculator";
 import { ImportCalculator } from "@/types/importCalculator";
 import { FormikErrors, FormikTouched, useFormik } from "formik";
+import { useSnackbar } from "notistack";
 import {
   FC,
   ReactNode,
@@ -18,6 +19,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { useFormState } from "react-dom";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
 interface Context {
@@ -47,6 +49,8 @@ interface Props {
 }
 
 export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues }) => {
+  const [message, storeData] = useFormState(storeImportCalculation, "");
+  const { enqueueSnackbar } = useSnackbar();
   const [reportValues, setReportValues] = useState<ApexAxisChartSeries>([]);
   const [totalCost, setTotalCost] = useState(0);
 
@@ -116,6 +120,14 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
     }
   }, [fetchedValues, setValues]);
 
+  useEffect(() => {
+    if (message && message.includes("Error")) {
+      enqueueSnackbar(message, { variant: "error" });
+    } else {
+      enqueueSnackbar(message);
+    }
+  }, [message, enqueueSnackbar]);
+
   const contextValue: Context = useMemo(
     () => ({
       values,
@@ -150,7 +162,7 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
   );
   return (
     <CalculatorContext.Provider value={contextValue}>
-      <form action={storeImportCalculation}>{children}</form>
+      <form action={storeData}>{children}</form>
     </CalculatorContext.Provider>
   );
 };
