@@ -1,6 +1,8 @@
 import { ImportCalculator, ItemCalculationValues } from "@/types/importCalculator";
+import { set } from "lodash";
 import { round } from "mathjs";
 import { parseSafeNumber } from "../helpers/number";
+import { ImportCalculatorValidationSchema } from "../parsers/importCalculator";
 
 export const calculateImportation = (inputs: ImportCalculator) => {
   // todo: store these values on the server
@@ -156,4 +158,18 @@ export const getImportReport = (articlesReport: ItemCalculationValues[]): ApexAx
       data: unitItemProfit,
     },
   ];
+};
+
+export const reassembleImportCalculatorData = (formData: FormData): ImportCalculator | null => {
+  const data = {};
+
+  formData.forEach((value, key) => set(data, key, value));
+
+  const parsedValue = ImportCalculatorValidationSchema.safeParse(data);
+
+  if (parsedValue.success) {
+    return parsedValue.data;
+  } else {
+    return null;
+  }
 };
