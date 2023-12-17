@@ -7,10 +7,10 @@ const app = initializeApp(JSON.parse(process.env.FIREBASE_CLIENT || ""));
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const FirebaseClient = {
+const Client = {
   app,
   auth,
   db,
 };
 
-export default FirebaseClient;
+export default Client;

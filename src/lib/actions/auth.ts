@@ -1,6 +1,6 @@
 "use server";
 
-import { signIn, signOut } from "@/services/auth";
+import { signIn, signOut } from "@/services/client/auth";
 
 export async function authenticate(_: string | undefined, formData: FormData) {
   try {
