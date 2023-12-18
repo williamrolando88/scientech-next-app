@@ -1,7 +1,9 @@
 import { COLLECTIONS } from "@/types/enums/collections";
-import { initializeApp } from "firebase-admin";
+import admin from "firebase-admin";
 
-const app = initializeApp(JSON.parse(process.env.FIREBASE_ADMIN || ""));
+const app = admin.initializeApp({
+  credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_ADMIN as string)),
+});
 
 const Admin = {
   app,
