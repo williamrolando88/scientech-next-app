@@ -8,7 +8,7 @@ const CalculatorNotesTable: FC = () => {
   const { values } = useImportCalculatorContext();
   return (
     <Stack gap={1}>
-      {values.notes.map((_, index) => (
+      {(values.notes || []).map((_, index) => (
         <EditableTextField key={index} index={index} />
       ))}
     </Stack>
