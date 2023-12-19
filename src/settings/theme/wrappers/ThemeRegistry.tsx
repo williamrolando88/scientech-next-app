@@ -1,8 +1,8 @@
 "use client";
 import { MotionLazyContainer } from "@/components/shared/animate";
-import SnackbarProvider from "@/components/shared/snackbar/SnackbarProvider";
 import ThemeProvider from "@/settings/theme";
 import CssBaseline from "@mui/material/CssBaseline";
+import { SnackbarProvider } from "notistack";
 import * as React from "react";
 import NextAppDirEmotionCacheProvider from "./EmotionCache";
 import { SettingsProvider } from "./SettingsContext";
@@ -16,7 +16,14 @@ export default function ThemeRegistry({ children }: { children: React.ReactNode 
           <ThemeProvider>
             <CssBaseline />
             <ThemeSettings>
-              <SnackbarProvider>{children}</SnackbarProvider>
+              <SnackbarProvider
+                anchorOrigin={{ horizontal: "right", vertical: "top" }}
+                autoHideDuration={3000}
+                variant="success"
+                preventDuplicate
+              >
+                {children}
+              </SnackbarProvider>
             </ThemeSettings>
           </ThemeProvider>
         </NextAppDirEmotionCacheProvider>
