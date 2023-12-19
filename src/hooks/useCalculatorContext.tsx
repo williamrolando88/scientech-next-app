@@ -82,7 +82,7 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
     (body: string) => {
       setValues((prevState) => ({
         ...prevState,
-        notes: [...prevState.notes, body],
+        notes: [...(prevState.notes || []), body],
       }));
     },
     [setValues]
@@ -92,7 +92,7 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
     (id: number) => {
       setValues((prevState) => ({
         ...prevState,
-        notes: prevState.notes.filter((_, index) => index !== id),
+        notes: (prevState.notes || []).filter((_, index) => index !== id),
       }));
     },
     [setValues]
@@ -121,10 +121,12 @@ export const ImportCalculatorProvider: FC<Props> = ({ children, fetchedValues })
   }, [fetchedValues, setValues]);
 
   useEffect(() => {
-    if (message && message.includes("Error")) {
-      enqueueSnackbar(message, { variant: "error" });
-    } else {
-      enqueueSnackbar(message);
+    if (message) {
+      if (message.includes("Error")) {
+        enqueueSnackbar(message, { variant: "error" });
+      } else {
+        enqueueSnackbar(message);
+      }
     }
   }, [message, enqueueSnackbar]);
 
