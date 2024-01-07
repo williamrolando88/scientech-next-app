@@ -10,7 +10,7 @@ interface EditableTextFieldProps {
 
 export const EditableTextField: FC<EditableTextFieldProps> = ({ index }) => {
   const { values, setFieldValue, deleteNote } = useImportCalculatorContext();
-  const storedValue = values.notes[index];
+  const storedValue = (values.notes || [])[index];
   const [disabled, setDisabled] = useState(true);
   const [currentValue, setCurrentValue] = useState(storedValue);
   const inputRef = useRef<HTMLInputElement>();

@@ -1,45 +1,59 @@
-# Material UI - Next.js App Router example in TypeScript
+# Scientech
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with Material UI installed.
+## Setup
 
-## How to use
+To start working in the dev environment is required to have the following `.env` file in the root of the project:
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+```
+# Firebase client config
+FIREBASE_CLIENT={...}
 
-<!-- #default-branch-switch -->
+# Firebase admin config
+FIREBASE_ADMIN={...}
 
-```bash
-curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/material-ui-nextjs-ts
-cd material-ui-nextjs-ts
+# Auth config
+AUTH_SECRET=XXXXX #openssl rand -base64 32
+AUTH_URL=http://localhost:3000/api/auth
+
+# Forms config
+FORMSPREE_SALES=XXXXXX
+FORMSPREE_PROJECTS=XXXXXX
 ```
 
-Install it and run:
+Each of the values can be found in the firebase console.
 
-```bash
-npm install
-npm run dev
+The `AUTH_SECRET` is a random string that will be used to sign the JWT tokens.
+
+The `FORMSPREE_SALES` and `FORMSPREE_PROJECTS` are the form ids for the sales and projects forms respectively.
+
+The `SERVICE_ACCOUNT` value is provided for Firebase to authenticate the admin console
+
+## Development
+
+Start by installing the dependencies:
+
+```
+yarn
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To start the development server run:
 
-or:
+```
+yarn dev
+```
 
-<!-- #default-branch-switch -->
+By default the server will be running on port `3000`.
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
+## Deployment
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-ui-nextjs-ts)
+To deploy the project run:
 
-## Learn more
+```
+yarn deploy
+```
 
-To learn more about this example:
+The deployment is done using vercel, it's automatically configured to deploy on every push to the `main` branch.
 
-- [Next.js documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Customizing Material UI](https://mui.com/material-ui/customization/how-to-customize/) - approaches to customizing Material UI.
+## License
 
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

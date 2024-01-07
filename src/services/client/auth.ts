@@ -1,5 +1,5 @@
 import { authConfig } from "@/settings/auth/auth.config";
-import FirebaseClient from "@/settings/firebase/firebaseClient.config";
+import Client from "@/settings/firebase/firebaseClient.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import NextAuth, { User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
@@ -7,7 +7,7 @@ import { z } from "zod";
 
 export const logIn = async (email: string, password: string): Promise<User | null> => {
   try {
-    const userCredentials = await signInWithEmailAndPassword(FirebaseClient.auth, email, password);
+    const userCredentials = await signInWithEmailAndPassword(Client.auth, email, password);
     const { displayName: name, uid: id } = userCredentials.user;
     return { id, email, name };
   } catch (error) {
